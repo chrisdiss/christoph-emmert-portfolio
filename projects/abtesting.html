@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=deivce-width, initial-scale=1.0">
+        <title>DevChris Portfolio Website</title>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css"> 
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" referrerpolicy="no-referrer"/>
+    
+        <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro:400,900|Source+Sans+Pro:300,900&display=swap" rel="stylesheet">
+
+        <link rel="stylesheet" href="../css/style.css">
+    
+    </head>
+    
+ 
+    
+    <body>
+        <header>
+            <div class="logo">
+                <img src="" alt="">
+            </div>
+           
+
+            <nav>
+                <ul class="nav__list">
+                    <li class="nav__item"><a href="../index.html" class="nav__link">About Me</a></li>
+                    <li class="nav__item"><a href="../projects.html" class="nav__link">My Projects</a></li>
+                    <li class="nav__item" style="float:right"><a class="active" href="#footer">Contact</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <div>
+            <h2 class="project__title">A/B Testing</h2>
+        </div>
+
+        <div>
+            <h3 class="project__subtitle">Description</h3>
+            <p class="project__text">For this project, I implemented an A/B test for an e-commerce website and analyzed the results. The objective was to decide if the company should implement the new landing page or keep the old version. For a detailed view visit the <a href="https://github.com/chrisdiss/udacity_ab_testing" target="_blank">Github repository</a>.</p>
+        </div>
+
+
+        <div>
+            <h3 class="project__subtitle">Method & Tools</h3>
+            <p class="project__text">The dataset contained information on each user, time, treatment group, conversion and country. The approach was to assess and clean the dataset and run the A/B test. The test was performed by implementing three different methods. After stating the Null- and Alternative-Hypothesis the methods were implemented:</p>
+            
+            <ul class="project__list">
+                <li>Using a simulation to bootstrap the p-differences between the conversion rate of the old and new landing page</li>
+                <li>Using statsmodels to calculate the z- and p-value</li>
+                <li>Using statsmodels to run a logistic regression</li>
+
+            </ul>
+
+            <p class="project__text">Tools</p>
+  
+            <ul class="project__list">
+                <li>Jupyter Notebook</li>
+                <li>Python</li>
+            </ul>
+        
+
+        </div>
+
+        <div>
+            <h3 class="project__subtitle">Findings</h3>
+            <p class="project__text"><img  class="center" src="../img/abtesting.png"></p>
+            <p class="project__text">Statiscally spoken there is no evidence for the new landing page to contribute to a higher conversion rate. With p-value higher than 0.05 we have no reason to reject the null hypothesis and therefore we have to assume that the old landing page leads to the same or better converstion rate than the new one does. Practically this means the company should not roll out the new landing page as their home landing page. With a big sample size like in this case (300000) there is enough testing evidence to confirm this result. Also there is no indicator that the country influences the conversion of the landing page. With this said, the company should focus on developing a new landing page as further tests with a new landing page version could lead to more insights. Also the company could focus on additional information to include for further testing as perhaps other characteristics like time of use could bring more information about why the new landing page did not work as expected and what to improve in the future.</p>
+    
+        </div>
+
+        <a href="../projects.html" class="btn project">Back to My Projects</a>
+
+
+        <!-- Footer -->
+        <footer class="footer" id="footer">
+            <!-- replace with your own email address -->
+            <p class="section__subtitle section__subtitle--skills">Connect with me</p>
+
+
+            <ul class="social-list">
+
+                <li class="social-list__item">
+                    <a class="social-list__link" href="mailto:christoph.emmert@gmx.de">
+                        <i class="fas fa-envelope"></i>
+                    </a>
+                </li>
+
+                <li class="social-list__item">
+                    <a class="social-list__link" href="https://www.linkedin.com/in/christoph-emmert/" target="_blank">
+                        <i class="fab fa-linkedin"></i>
+                    </a>
+                </li>
+                
+                <li class="social-list__item">
+                    <a class="social-list__link" href="https://github.com/chrisdiss" target="_blank">
+                        <i class="fab fa-github"></i>
+                    </a>
+                </li>
+            </ul>
+            <p>Made with <i class="fas fa-heart"></i> and <i class="fas fa-coffee"></i></p>
+        </footer>
+        <script src="../js/index.js"></script>
+    </body>
+</html>

@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=deivce-width, initial-scale=1.0">
+        <title>DevChris Portfolio Website</title>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css"> 
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" referrerpolicy="no-referrer"/>
+    
+        <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro:400,900|Source+Sans+Pro:300,900&display=swap" rel="stylesheet">
+
+        <link rel="stylesheet" href="../css/style.css">
+    
+    </head>
+    
+ 
+    
+    <body>
+        <header>
+            <div class="logo">
+                <img src="" alt="">
+            </div>
+           
+
+            <nav>
+                <ul class="nav__list">
+                    <li class="nav__item"><a href="../index.html" class="nav__link">About Me</a></li>
+                    <li class="nav__item"><a href="../projects.html" class="nav__link">My Projects</a></li>
+                    <li class="nav__item" style="float:right"><a class="active" href="#footer">Contact</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <div>
+            <h2 class="project__title">Building a Workout Classifciation System</h2>
+        </div>
+
+        <div>
+            <h3 class="project__subtitle">Description</h3>
+            <p class="project__text">The automated tracking of exercise routines is a challenge for athletes. There are hardly any reliable ways to automatically track bodyweight exercises. Therefore, this project aimed to develop a sensor system that enables the tracking of exercises. Based on the sensor data, I was able to design a machine learning algorithm that automatically classified exercises and quantified repetitions.</p>
+        </div>
+
+        <div>
+            <h3 class="project__subtitle">Participating Institutions</h3>
+            <p class="project__text">
+                <ul class="project__list">
+                    <li>Research section Sport-Technology, Department of Sport Science, University of Bayreuth</li>
+                </ul>
+                </p>
+        </div>
+
+        <div>
+            <h3 class="project__subtitle">Project Objectives</h3>
+            <ul class="project__list">
+                <li>Build a sensor with low cost materials</li>
+                <li>Develop sensor electronics to obtain reliable data for exercise classification</li>
+                <li>Implement a classification system based on the sensor data using machine learning</li>
+            </ul>        </div>
+
+        <div>
+            <h3 class="project__subtitle">Method & Tools</h3>
+            <p class="project__text">After some research, we decided to build a pressure sensor mat. Via the microcontroller we were able to query a matrix of corresponding pressure values. These values could be queried by the sensor for the entire mat at a certain frequency, so that we could display the pressure changes over time.</p>
+            <p class="project__text">My tasks: (Tools)</p>
+  
+            <ul class="project__list">
+                <li>Find Sensor Material: Piezoelectric Foil</li>
+                <li>Develop Sensor Electronics: Arduino</li>
+                <li>Machine Learning Algorithm: Matlab</li>
+            </ul>
+        
+            <p class="project__text">Overview about the electrical circuit:</p>
+            <p class="project__text"><img class="center" src="../img/schaltbild.jpg"></p>
+
+            <p class="project__text">Visualization of the measured pressure values (voltage):</p>
+             <p class="project__text"><img  class="center" src="../img/druckverteilung.jpg"></p>
+
+        </div>
+
+        <div>
+            <h3 class="project__subtitle">Findings</h3>
+            <p class="project__text">I developed a ML algorithm in Matlab that classified the pressure values into corresponding exercise types. Therefore we used the different area of an exercise combined with the pressure values. I then applied a kNN-algorithm for the classification and received a 99,3% accuracy for the classification of two different exercises. In the following you can see the predicted class in a scatter plot and a confusion matrix:</p>
+            <p class="project__text"><img class="center" src="../img/confusion.jpg"></p>
+
+            <p class="project__text">Finally I quantified the exercise repetitions using an algorithm to count the peak values of the recorded pressure data:</p>
+            <p class="project__text"><img class="center" src="../img/druckverlauf.jpg"></p>
+    
+        </div>
+
+        <a href="../projects.html" class="btn project">Back to My Projects</a>
+
+
+        <!-- Footer -->
+        <footer class="footer" id="footer">
+            <!-- replace with your own email address -->
+            <p class="section__subtitle section__subtitle--skills">Connect with me</p>
+
+
+            <ul class="social-list">
+
+                <li class="social-list__item">
+                    <a class="social-list__link" href="mailto:christoph.emmert@gmx.de">
+                        <i class="fas fa-envelope"></i>
+                    </a>
+                </li>
+
+                <li class="social-list__item">
+                    <a class="social-list__link" href="https://www.linkedin.com/in/christoph-emmert/" target="_blank">
+                        <i class="fab fa-linkedin"></i>
+                    </a>
+                </li>
+                
+                <li class="social-list__item">
+                    <a class="social-list__link" href="https://github.com/chrisdiss" target="_blank">
+                        <i class="fab fa-github"></i>
+                    </a>
+                </li>
+            </ul>
+            <p>Made with <i class="fas fa-heart"></i> and <i class="fas fa-coffee"></i></p>
+        </footer>
+        <script src="../js/index.js"></script>
+    </body>
+</html>

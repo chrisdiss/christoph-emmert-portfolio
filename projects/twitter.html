@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=deivce-width, initial-scale=1.0">
+        <title>DevChris Portfolio Website</title>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css"> 
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" referrerpolicy="no-referrer"/>
+    
+        <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro:400,900|Source+Sans+Pro:300,900&display=swap" rel="stylesheet">
+
+        <link rel="stylesheet" href="../css/style.css">
+    
+    </head>
+    
+ 
+    
+    <body>
+        <header>
+            <div class="logo">
+                <img src="" alt="">
+            </div>
+           
+
+            <nav>
+                <ul class="nav__list">
+                    <li class="nav__item"><a href="../index.html" class="nav__link">About Me</a></li>
+                    <li class="nav__item"><a href="../projects.html" class="nav__link">My Projects</a></li>
+                    <li class="nav__item" style="float:right"><a class="active" href="#footer">Contact</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <div>
+            <h2 class="project__title">Exploratory Data Analysis of Twitter data</h2>
+        </div>
+
+        <div>
+            <h3 class="project__subtitle">Description</h3>
+            <p class="project__text">The objective is to go through the process of Data Wrangling (gathering data from different sources and formats, assessing and cleaning the data) extensively for Data Analysis and Visualization. The data sources consisted of an tweet archive with various information on a single tweet, a predicition file for predicting the dog's breed and a tweets list with additional information that was gathered via the Twitter API. After the wrangling the data was cleaned and stored in a single file so analysis could be handled. For a detailed view visit the <a href="https://github.com/chrisdiss/udacity_data_wrangling" target="_blank">Github repository</a>.</p>
+        </div>
+
+        <div>
+            <h3 class="project__subtitle">Method & Tools</h3>
+            <p class="project__text">Three different data sources were provided and loaded into a dataframe in a Jupyter Notebook. The twitter archive was provided as csv file and could be gathered easily into the Notebook. Second, a image prediction file needed to be gathered by downloading it via the given url and safing it into a dataframe. This information enriched the basic tweet information from the archive file. Additionally, the tweets list could be accesed via the Twitter API and safed as json format into a txt file. From there, a json file was loaded into the Notebook and safed as a dataframe to access the information.</p>
+            <p class="project__text">The data was inspected visually and programmatically. Various quality and tidiness issues could be detected and the observations were defined for the cleaning process. Dirty Data is low quality data and needs to be removed from the data set. For example for this special purpose only original tweets were allowed for the analysis so retweets and replies needed to be deleted. Also for a smooth analyzing process the correct data type of the variables, e.g. datetime, and intuitive and correct column names needed to be ensured as well as the uniform spelling. Also for the purpose of this project, not necessary information like the url was dropped so the dataframe was good to handle. Some tidiness issues were adressed. Above all the dog class was put into one column as each variable needs to form only one column. Therefore some information was seperated into two columns, e.g. date of the tweet and time of the tweet. Dataframes were merged together as each type of observational unit should be listet in one table.</p>
+
+            <p class="project__text">Tools:</p>
+            <ul class="project__list">
+                <li>Jupyter Notebook</li>
+                <li>Python</li>
+             </ul>
+
+        </div>
+
+        <div>
+            <h3 class="project__subtitle">Findings</h3>
+            <p class="project__text">Data about the dogs breed shows that golden retrievers are the ones that appear the most in the tweet images before labradors, pembrokesand and chihuahas. With having used a prediction algorithm this data needs to be used carefully but can give a first indication about which dog breed is most common to share pictures in twitter and therefore is widly spread and popular in social media. By analyzing the tweet data it can be clearly said, that there is a high correlation between retweet count and favorite count (r = 0.79) as shown in the following figure.</p>
+            
+            <p class="project__text"><img class="center" src="../img/twitter.png"></p>
+
+            <p class="project__text">Finally a analysis of the tweet ratings grouped by the dog stage shows that there is a difference in the mean ratings. According to this the single stage puppo receives the highest mean ratings before doggo. This shows that there could be a difference in perception of dog tweets and ratings based on the dog stage, with the tendency that tweets with younger dogs, as puppo, receive a higher rating.</p>
+            </div>
+
+        <a href="../projects.html" class="btn project">Back to My Projects</a>
+
+
+        <!-- Footer -->
+        <footer class="footer" id="footer">
+            <!-- replace with your own email address -->
+            <p class="section__subtitle section__subtitle--skills">Connect with me</p>
+
+
+            <ul class="social-list">
+
+                <li class="social-list__item">
+                    <a class="social-list__link" href="mailto:christoph.emmert@gmx.de">
+                        <i class="fas fa-envelope"></i>
+                    </a>
+                </li>
+
+                <li class="social-list__item">
+                    <a class="social-list__link" href="https://www.linkedin.com/in/christoph-emmert/" target="_blank">
+                        <i class="fab fa-linkedin"></i>
+                    </a>
+                </li>
+                
+                <li class="social-list__item">
+                    <a class="social-list__link" href="https://github.com/chrisdiss" target="_blank">
+                        <i class="fab fa-github"></i>
+                    </a>
+                </li>
+            </ul>
+            <p>Made with <i class="fas fa-heart"></i> and <i class="fas fa-coffee"></i></p>
+        </footer>
+        <script src="../js/index.js"></script>
+    </body>
+</html>

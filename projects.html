@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=deivce-width, initial-scale=1.0">
+        <title>DevChris Portfolio Website</title>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css"> 
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" referrerpolicy="no-referrer"/>
+    
+        <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro:400,900|Source+Sans+Pro:300,900&display=swap" rel="stylesheet">
+
+        <link rel="stylesheet" href="css/style.css">
+    
+    </head>
+    
+    
+    <body>
+        <header>
+            <div class="logo">
+                <img src="" alt="">
+            </div>
+           
+
+            <nav>
+                <ul class="nav__list">
+                    <li class="nav__item"><a href="index.html" class="nav__link">About Me</a></li>
+                    <li class="nav__item"><a href="projects.html" class="nav__link">My Projects</a></li>
+                    <li class="nav__item" style="float:right"><a class="active" href="#footer">Contact</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <div class="space">
+
+        </div>
+         <!-- My Work -->
+         <section class="my-work" id="work">
+            <h2 class="section__title section__title--work">My work</h2>
+            <p class="section__subtitle section__subtitle--work">A selection of my work</p>
+    
+            
+            <div class="portfolio container">
+                <!-- Portfolio item 01 -->
+                <div>
+                    <p class="tags"><em>#Product #User #Analytics #SPSS</em></p>
+                    <a href="projects/mathesis.html" class="portfolio__item">
+                        <img src="img/prototyping.jpg" alt="" class="portfolio__img">
+                    </a>
+                    <h3 class="tags">Fitness App Development</h3>
+                    
+                    <p class="portfolio__text">I led a research project where we developed a motivation enhancing fitness app. My tasks included doing user research, defining a product vision, managing the roadmap and constantly analyzing user data.</p>
+                </div>
+
+                <div>
+                    <p class="tags"><em>#Sensors #DataScience #Prototyping #Matlab</em></p>
+                    <a href="projects/fitnessmatte.html" class="portfolio__item">
+                        <img src="img/arduino.jpg" alt="" class="portfolio__img">
+                    </a>
+                    <h3 class="tags">Building a Classification System</h3>
+                    
+                    <p class="portfolio__text">First part of the project included building a sensor system based on the Arduino platform. Second, I analyzed sensor data with Matlab and built a automatic workout classification system.</p>
+                </div>
+
+                <div>
+                    <p class="tags"><em>#Analytics #User #Web #Python</em></p>
+                    <a href="projects/abtesting.html" class="portfolio__item">
+                        <img src="img/abtest.jpg" alt="" class="portfolio__img">
+                    </a>
+                    <h3 class="tags">A/B Testing</h3>
+                    
+                    <p class="portfolio__text">Given the dataset of a online learning platform I analyzed the effectivness of a new landing page with an A/B Test to answer if the new page leads to a higher conversion rate.</p>
+                </div>
+
+                <div>
+                    <p class="tags"><em>#Analytics #Visualization #Business #Python</em></p>
+                    <a href="projects/bikesharing.html" class="portfolio__item">
+                        <img src="img/dataviz.jpg" alt="" class="portfolio__img">
+                    </a>
+                    <h3 class="tags">Improving a Bike Sharing service</h3>
+                    
+                    <p class="portfolio__text">Goal of this project was to investigate a bike sharing service renting data in order to outline some potential for improvement.</p>
+                </div>
+
+                <div>
+                    <p class="tags"><em>#MedicalStudy #Analytics #SPSS</em></p>
+                    <a href="projects/medicalstudy.html" class="portfolio__item">
+                        <img src="img/lab.jpg" alt="" class="portfolio__img">
+                    </a>
+                    <h3 class="tags">Medical Intervention Study</h3>
+                    
+                    <p class="portfolio__text">In a university project we implemented a research project to investigate the effects of a nutrition treatment. We thereby analyzed several medical datasets examine control vs. treatment data.</p>
+                </div>
+
+                <div>
+                    <p class="tags"><em>#Analytics #DataWrangling #Business #Python</em></p>
+                    <a href="projects/twitter.html" class="portfolio__item">
+                        <img src="img/wrangling.jpg" alt="" class="portfolio__img">
+                    </a>
+                    <h3 class="tags">EDA of Twitter Data</h3>
+                    
+                    <p class="portfolio__text">In this project I collected data from different sources (e.g. API) and did a full cleaning and exploration process to find some insights in the twitter ussage behavior.</p>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="footer" id="footer">
+            <!-- replace with your own email address -->
+            <p class="section__subtitle section__subtitle--skills">Connect with me</p>
+
+            <ul class="social-list">
+
+                <li class="social-list__item">
+                    <a class="social-list__link" href="mailto:christoph.emmert@gmx.de">
+                        <i class="fas fa-envelope"></i>
+                    </a>
+                </li>
+
+                <li class="social-list__item">
+                    <a class="social-list__link" href="https://www.linkedin.com/in/christoph-emmert/" target="_blank">
+                        <i class="fab fa-linkedin"></i>
+                    </a>
+                </li>
+                
+                <li class="social-list__item">
+                    <a class="social-list__link" href="https://github.com/chrisdiss" target="_blank">
+                        <i class="fab fa-github"></i>
+                    </a>
+                </li>
+            </ul>
+            <p>Made with <i class="fas fa-heart"></i> and <i class="fas fa-coffee"></i></p>
+        </footer>
+        <script src="js/index.js"></script>
+    </body>
+</html>
