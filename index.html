@@ -2,26 +2,565 @@
 <html lang="en">
     <head>
         <meta charset="UTF-8">
-        <meta name="viewport" content="width=deivce-width, initial-scale=1.0">
-        <title>DevChris Portfolio Website</title>
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css"> 
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Christoph Emmert – Product Manager &amp; Data Analyst</title>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" referrerpolicy="no-referrer"/>
-    
         <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro:400,900|Source+Sans+Pro:300,900&display=swap" rel="stylesheet">
-
         <link rel="stylesheet" href="css/style.css">
-    
+
+        <style>
+            html { scroll-behavior: smooth; }
+            *, *::before, *::after { box-sizing: border-box; }
+
+            /* ════════════════════════════
+               HERO
+            ════════════════════════════ */
+            .hero {
+                min-height: 100vh;
+                background: var(--clr-dark);
+                display: flex;
+                align-items: center;
+                position: relative;
+                overflow: hidden;
+                padding: 7em 2em 5em;
+            }
+
+            .hero::before {
+                content: '';
+                position: absolute;
+                inset: 0;
+                background-image: radial-gradient(rgba(10,126,133,0.18) 1px, transparent 1px);
+                background-size: 36px 36px;
+                pointer-events: none;
+            }
+
+            .hero::after {
+                content: '';
+                position: absolute;
+                bottom: 0; left: 0; right: 0;
+                height: 140px;
+                background: linear-gradient(transparent, var(--clr-dark));
+                pointer-events: none;
+            }
+
+            .hero__inner {
+                max-width: 1080px;
+                margin: 0 auto;
+                width: 100%;
+                display: grid;
+                grid-template-columns: 1fr 280px;
+                gap: 5em;
+                align-items: center;
+                position: relative;
+                z-index: 1;
+            }
+
+            .hero__eyebrow {
+                font-family: var(--ff-secondary);
+                font-size: 0.72rem;
+                letter-spacing: 5px;
+                text-transform: uppercase;
+                color: var(--clr-accent);
+                margin: 0 0 1.1em;
+                opacity: 0;
+                animation: fadeUp 0.65s ease forwards 0.15s;
+            }
+
+            .hero__name {
+                font-size: clamp(2.6rem, 6.5vw, 5rem);
+                font-weight: var(--fw-bold);
+                color: var(--clr-light);
+                line-height: 1;
+                margin: 0 0 0.25em;
+                opacity: 0;
+                animation: fadeUp 0.65s ease forwards 0.3s;
+            }
+
+            .hero__role {
+                font-family: var(--ff-secondary);
+                font-size: clamp(0.8rem, 1.6vw, 1rem);
+                color: rgba(255,255,255,0.45);
+                letter-spacing: 2px;
+                margin: 0 0 2em;
+                opacity: 0;
+                animation: fadeUp 0.65s ease forwards 0.45s;
+            }
+
+            .hero__role em {
+                color: var(--clr-accent);
+                font-style: normal;
+            }
+
+            .hero__bio {
+                font-size: 1rem;
+                color: rgba(255,255,255,0.6);
+                line-height: 1.85;
+                max-width: 500px;
+                margin: 0 0 2.5em;
+                opacity: 0;
+                animation: fadeUp 0.65s ease forwards 0.6s;
+            }
+
+            .hero__actions {
+                display: flex;
+                gap: 1em;
+                flex-wrap: wrap;
+                opacity: 0;
+                animation: fadeUp 0.65s ease forwards 0.75s;
+            }
+
+            .btn-outline {
+                display: inline-block;
+                padding: .55em 2em;
+                border: 1px solid rgba(255,255,255,0.2);
+                color: rgba(255,255,255,0.65);
+                text-decoration: none;
+                font-size: .76rem;
+                text-transform: uppercase;
+                letter-spacing: 2px;
+                font-weight: var(--fw-bold);
+                transition: border-color 0.22s, color 0.22s;
+            }
+
+            .btn-outline:hover {
+                border-color: var(--clr-accent);
+                color: var(--clr-accent);
+            }
+
+            .hero__photo-wrap {
+                position: relative;
+                opacity: 0;
+                animation: fadeIn 0.9s ease forwards 0.55s;
+            }
+
+            .hero__photo-wrap::after {
+                content: '';
+                position: absolute;
+                inset: 0;
+                border: 1px solid rgba(10,126,133,0.45);
+                border-radius: 4px;
+                transform: translate(12px, 12px);
+                pointer-events: none;
+                transition: transform 0.3s ease;
+            }
+
+            .hero__photo-wrap:hover::after { transform: translate(6px, 6px); }
+
+            .hero__photo {
+                width: 100%;
+                aspect-ratio: 3/4;
+                object-fit: cover;
+                object-position: top;
+                border-radius: 4px;
+                display: block;
+                filter: grayscale(15%);
+                transition: filter 0.4s ease;
+            }
+
+            .hero__photo-wrap:hover .hero__photo { filter: grayscale(0); }
+
+            .scroll-hint {
+                position: absolute;
+                bottom: 2.2em;
+                left: 50%;
+                transform: translateX(-50%);
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                gap: 0.5em;
+                color: rgba(255,255,255,0.2);
+                font-family: var(--ff-secondary);
+                font-size: 0.6rem;
+                letter-spacing: 3px;
+                text-transform: uppercase;
+                z-index: 2;
+                opacity: 0;
+                animation: fadeIn 1s ease forwards 1.3s;
+            }
+
+            .scroll-hint__bar {
+                width: 1px;
+                height: 48px;
+                background: linear-gradient(var(--clr-accent), transparent);
+                animation: barDrop 1.8s ease-in-out infinite;
+            }
+
+            @keyframes barDrop {
+                0%   { transform: scaleY(0); transform-origin: top;    opacity: 1; }
+                50%  { transform: scaleY(1); transform-origin: top;    opacity: 1; }
+                51%  { transform: scaleY(1); transform-origin: bottom; opacity: 1; }
+                100% { transform: scaleY(0); transform-origin: bottom; opacity: 0; }
+            }
+
+            /* ════════════════════════════
+               WHAT I DO
+            ════════════════════════════ */
+            .what-i-do {
+                background: #f5f8fc;
+                padding: 6em 2em;
+            }
+
+            .section-header {
+                text-align: center;
+                max-width: 580px;
+                margin: 0 auto 3.5em;
+            }
+
+            .section-header__label {
+                font-family: var(--ff-secondary);
+                font-size: 0.68rem;
+                letter-spacing: 5px;
+                text-transform: uppercase;
+                color: var(--clr-accent);
+                margin: 0 0 0.5em;
+            }
+
+            .section-header__title {
+                font-size: clamp(1.6rem, 3vw, 2.4rem);
+                font-weight: var(--fw-bold);
+                color: var(--clr-dark);
+                margin: 0;
+                line-height: 1.1;
+            }
+
+            .services-grid {
+                display: grid;
+                grid-template-columns: repeat(3, 1fr);
+                gap: 1px;
+                max-width: 960px;
+                margin: 0 auto 3em;
+                background: #dde5ef;
+            }
+
+            .service-card {
+                background: #fff;
+                padding: 2.6em 2em;
+                position: relative;
+                overflow: hidden;
+                opacity: 0;
+                transform: translateY(22px);
+                transition: opacity 0.5s ease, transform 0.5s ease;
+            }
+
+            .service-card.visible { opacity: 1; transform: translateY(0); }
+
+            .service-card:hover {
+                z-index: 1;
+                box-shadow: 0 20px 50px rgba(0,40,69,0.09);
+            }
+
+            .service-card::before {
+                content: '';
+                position: absolute;
+                top: 0; left: 0; right: 0;
+                height: 2px;
+                background: var(--clr-accent);
+                transform: scaleX(0);
+                transform-origin: left;
+                transition: transform 0.35s ease;
+            }
+
+            .service-card:hover::before { transform: scaleX(1); }
+
+            .service-card__icon {
+                font-size: 1.5rem;
+                color: var(--clr-accent);
+                margin-bottom: 1.2em;
+                display: block;
+            }
+
+            .service-card__title {
+                font-size: 1rem;
+                font-weight: var(--fw-bold);
+                color: var(--clr-dark);
+                margin: 0 0 0.7em;
+            }
+
+            .service-card__text {
+                font-size: 0.875rem;
+                color: #5a7080;
+                line-height: 1.8;
+                margin: 0;
+            }
+
+            .section-cta { text-align: center; }
+
+            /* ════════════════════════════
+               ABOUT ME
+            ════════════════════════════ */
+            .about {
+                background: var(--clr-dark);
+                padding: 6em 2em;
+                position: relative;
+                overflow: hidden;
+            }
+
+            .about::before {
+                content: '';
+                position: absolute;
+                top: 0; left: 0; right: 0;
+                height: 1px;
+                background: linear-gradient(90deg, transparent, var(--clr-accent), transparent);
+            }
+
+            .about__inner {
+                max-width: 1000px;
+                margin: 0 auto;
+                display: grid;
+                grid-template-columns: 360px 1fr;
+                gap: 5em;
+                align-items: center;
+            }
+
+            .about__photo-wrap {
+                position: relative;
+                opacity: 0;
+                transform: translateX(-18px);
+                transition: opacity 0.65s ease, transform 0.65s ease;
+            }
+
+            .about__photo-wrap.visible { opacity: 1; transform: translateX(0); }
+
+            .about__photo-wrap::after {
+                content: '';
+                position: absolute;
+                inset: 0;
+                border: 1px solid rgba(10,126,133,0.35);
+                border-radius: 4px;
+                transform: translate(-12px, 12px);
+                pointer-events: none;
+            }
+
+            .about__photo {
+                width: 100%;
+                aspect-ratio: 3/4;
+                object-fit: cover;
+                object-position: top;
+                border-radius: 4px;
+                display: block;
+                filter: grayscale(20%);
+                transition: filter 0.4s ease;
+            }
+
+            .about__photo-wrap:hover .about__photo { filter: grayscale(0); }
+
+            .about__content {
+                color: var(--clr-light);
+                opacity: 0;
+                transform: translateX(18px);
+                transition: opacity 0.65s ease 0.18s, transform 0.65s ease 0.18s;
+            }
+
+            .about__content.visible { opacity: 1; transform: translateX(0); }
+
+            .about__label {
+                font-family: var(--ff-secondary);
+                font-size: 0.68rem;
+                letter-spacing: 5px;
+                text-transform: uppercase;
+                color: var(--clr-accent);
+                margin: 0 0 0.6em;
+            }
+
+            .about__heading {
+                font-size: clamp(1.8rem, 3vw, 2.4rem);
+                font-weight: var(--fw-bold);
+                margin: 0 0 0.9em;
+                line-height: 1.1;
+            }
+
+            .about__tagline {
+                font-family: var(--ff-secondary);
+                font-size: 0.8rem;
+                color: var(--clr-accent);
+                letter-spacing: 1.5px;
+                border-left: 2px solid var(--clr-accent);
+                padding-left: 0.9em;
+                margin: 0 0 1.8em;
+                line-height: 1.6;
+            }
+
+            .about__text {
+                font-size: 0.94rem;
+                color: rgba(255,255,255,0.62);
+                line-height: 1.9;
+                margin: 0 0 1em;
+            }
+
+            .about__traits {
+                display: flex;
+                gap: 2.5em;
+                flex-wrap: wrap;
+                margin-top: 2.5em;
+                padding-top: 2.2em;
+                border-top: 1px solid rgba(255,255,255,0.07);
+            }
+
+            .trait { display: flex; flex-direction: column; gap: 0.25em; }
+
+            .trait__icon { font-size: 1rem; color: var(--clr-accent); margin-bottom: 0.1em; }
+
+            .trait__label {
+                font-family: var(--ff-secondary);
+                font-size: 0.64rem;
+                letter-spacing: 2.5px;
+                text-transform: uppercase;
+                color: rgba(255,255,255,0.35);
+            }
+
+            .trait__value {
+                font-weight: var(--fw-bold);
+                font-size: 0.88rem;
+                color: var(--clr-light);
+            }
+
+            /* ════════════════════════════
+               SKILLS
+            ════════════════════════════ */
+            .skills-section {
+                background: #f5f8fc;
+                padding: 6em 2em;
+            }
+
+            .skills-layout {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: 5em;
+                max-width: 960px;
+                margin: 0 auto;
+            }
+
+            .skills-col__heading {
+                font-family: var(--ff-secondary);
+                font-size: 0.66rem;
+                letter-spacing: 4px;
+                text-transform: uppercase;
+                color: var(--clr-accent);
+                margin: 0 0 2em;
+                padding-bottom: 1em;
+                border-bottom: 1px solid #dde5ef;
+            }
+
+            .skill-bar {
+                margin-bottom: 1.6em;
+                opacity: 0;
+                transform: translateX(-12px);
+                transition: opacity 0.45s ease, transform 0.45s ease;
+            }
+
+            .skill-bar.visible { opacity: 1; transform: translateX(0); }
+
+            .skill-bar__header {
+                display: flex;
+                justify-content: space-between;
+                align-items: baseline;
+                margin-bottom: 0.5em;
+            }
+
+            .skill-bar__name {
+                font-size: 0.875rem;
+                font-weight: var(--fw-bold);
+                color: var(--clr-dark);
+                letter-spacing: 0.4px;
+            }
+
+            .skill-bar__pct {
+                font-family: var(--ff-secondary);
+                font-size: 0.7rem;
+                color: var(--clr-accent);
+            }
+
+            .skill-bar__track {
+                height: 2px;
+                background: #dde5ef;
+                border-radius: 2px;
+                overflow: hidden;
+            }
+
+            .skill-bar__fill {
+                height: 100%;
+                background: var(--clr-accent);
+                border-radius: 2px;
+                width: 0;
+                transition: width 1.1s cubic-bezier(0.4, 0, 0.2, 1);
+            }
+
+            .soft-skill-list {
+                display: flex;
+                flex-direction: column;
+                gap: 1.4em;
+            }
+
+            .soft-skill {
+                display: flex;
+                align-items: flex-start;
+                gap: 1.1em;
+                opacity: 0;
+                transform: translateX(12px);
+                transition: opacity 0.45s ease, transform 0.45s ease;
+            }
+
+            .soft-skill.visible { opacity: 1; transform: translateX(0); }
+
+            .soft-skill__icon {
+                width: 38px;
+                height: 38px;
+                border-radius: 50%;
+                background: rgba(10,126,133,0.1);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                color: var(--clr-accent);
+                font-size: 0.95rem;
+                flex-shrink: 0;
+                margin-top: 2px;
+            }
+
+            .soft-skill__name {
+                font-weight: var(--fw-bold);
+                font-size: 0.9rem;
+                color: var(--clr-dark);
+                margin: 0 0 0.2em;
+            }
+
+            .soft-skill__desc {
+                font-size: 0.82rem;
+                color: #5a7080;
+                line-height: 1.6;
+                margin: 0;
+            }
+
+            /* ════════════════════════════
+               KEYFRAMES
+            ════════════════════════════ */
+            @keyframes fadeUp {
+                from { opacity: 0; transform: translateY(20px); }
+                to   { opacity: 1; transform: translateY(0); }
+            }
+
+            @keyframes fadeIn {
+                from { opacity: 0; }
+                to   { opacity: 1; }
+            }
+
+            /* ════════════════════════════
+               RESPONSIVE
+            ════════════════════════════ */
+            @media (max-width: 900px) {
+                .hero__inner        { grid-template-columns: 1fr; }
+                .hero__photo-wrap   { display: none; }
+                .about__inner       { grid-template-columns: 1fr; }
+                .about__photo-wrap  { display: none; }
+                .skills-layout      { grid-template-columns: 1fr; gap: 3em; }
+                .services-grid      { grid-template-columns: 1fr; }
+            }
+        </style>
     </head>
-    
-    
+
     <body>
         <header>
-
-            <div class="logo">
-                <img src="" alt="">
-            </div>
-           
-
+            <div class="logo"><img src="" alt=""></div>
             <nav>
                 <ul class="nav__list">
                     <li class="nav__item"><a href="#home" class="nav__link">About Me</a></li>
@@ -33,226 +572,205 @@
         </header>
 
 
+        <!-- ════ HERO ════ -->
+        <section class="hero" id="home">
+            <div class="hero__inner">
+                <div class="hero__text">
+                    <p class="hero__eyebrow">Product Manager &amp; Data Analyst</p>
+                    <h1 class="hero__name">Christoph<br>Emmert</h1>
+                    <p class="hero__role">Co-Founder @ Seroton &nbsp;·&nbsp; <em>Munich, Germany</em></p>
+                    <p class="hero__bio">I build tech products that sit at the intersection of human behaviour, data, and purposeful design — currently creating smart wellness technology at Seroton.</p>
+                    <div class="hero__actions">
+                        <a href="projects.html" class="btn">My Projects</a>
+                        <a href="cv.html" class="btn-outline">View CV</a>
+                        <a href="#footer" class="btn-outline">Contact</a>
+                    </div>
+                </div>
 
-        <!-- Introduction-->
-        <section class="intro" id="home">
-            <h1 class="section__title section__title--intro">
-                Hi, I am <strong>Christoph Emmert</strong>
-            </h1>
-            <p class="section__subtitle section__subtitle--intro">
-                Product Manager & Data Analyst
-            </p>
-            <img src="img/ce_1.JPG" alt="A picture of Christoph Emmert smilling" class="intro__img">
-        </section>
-
-
-
-        <!-- My skills-->
-        <section class="my-skills" id="skills">
-            <h2 class="section__title section__title--skills">What I do</h2>
-          
-            <div class="skills">
-                <div class="skill">
-                    <h3>Product Management</h3>
-                    <p>I strive to find simple solutions to complex problems and user needs. My background enables me to have an understanding of different stakeholders in the company and to constantly evaluate new product ideas. Thereby, I engage deeply with the business and product vision and align the continuous product development process to it.</p>
-                </div> <!--skill-->
-
-                <div class="skill">
-                    <h3>Product Analytics</h3>
-                    <p>Making product decisions based on quantitative findings is key. In addition to my experience in using the common analytical tools and metrics, I excel in asking the right questions. In doing so, I have a deep understanding of the product and its users and I can draw the right conclusions.</p>
-                </div> <!--skill-->
-
-                <div class="skill">
-                    <h3>Data Science</h3>
-                    <p>Equipped with the tools of a data scientist, my goal is to generate valuable insights from data. Based on a suitable infrastructure, I apply advanced analyses to create value for the company or let the data be the product itself.</p>
-                </div> <!--skill-->
-
-            </div>
-            <a href="projects.html" class="btn">My Projects</a>
-        </section>
-
-        <!-- about me-->
-        <section class="about-me" id="about">
-            <h2 class="section__title section__title--about">Who I am</h2>
-            <p class="section__subtitle section__subtitle--about">Technology Enthusiast made with <i class="fas fa-heart"></i>, <i class="fas fa-lightbulb"></i> and <i class="fas fa-dumbbell"></i></p>
-            
-            <div class="about-me__body">
-                <p>I am a tech-savvy, open-minded and sports-mad young professional with a background in business, sports and engineering based in Germany. Thanks to my curiosity and quick perception, I can master challenging situations.</p>
-                <p>I am fascinated by the development of tech products that help people live more fulfilled lives and help organisations thrive. I am passionate about combining technology and science, understanding people and finding solutions to complex problems. I operate at the intersection between people & business, engineering, product vision and analytics with the goal of optimising and rethinking solutions.</p>
+                <div class="hero__photo-wrap">
+                    <img src="img/ce_1.JPG" alt="Christoph Emmert" class="hero__photo">
+                </div>
             </div>
 
-            <img src="img/ce_2.JPG" alt="Christop standing in the nature" class="about-me__img">
+            <div class="scroll-hint">
+                <div class="scroll-hint__bar"></div>
+                Scroll
+            </div>
         </section>
 
-         <!-- my skills-->
-        <section class="my-skillslist" id="skills">
-            <h2 class="section__title section__title--skills">My skills</h2>
-               <p class="section__subtitle section__subtitle--skills">Hard Skills</p>
-            
 
-               <div class="skills">
-                    
-                    <div class="box">
-                        <div class="percent">
-                            <svg class="excel">
-                                <circle class="offset" cx="70" cy="70" r="70"></circle>
-                                <circle cx="70" cy="70" r="70"></circle>
-                            </svg>
-                            <div class="num">
-                                <p>MS Excel</p>
+        <!-- ════ WHAT I DO ════ -->
+        <section class="what-i-do" id="skills">
+            <div class="section-header">
+                <p class="section-header__label">Expertise</p>
+                <h2 class="section-header__title">What I Do</h2>
+            </div>
+
+            <div class="services-grid">
+                <div class="service-card">
+                    <span class="service-card__icon"><i class="fas fa-compass"></i></span>
+                    <h3 class="service-card__title">Product Management</h3>
+                    <p class="service-card__text">I find simple solutions to complex problems. Bridging business, engineering, and user needs, I define product vision and steer development with a clear, data-informed roadmap.</p>
+                </div>
+                <div class="service-card">
+                    <span class="service-card__icon"><i class="fas fa-chart-line"></i></span>
+                    <h3 class="service-card__title">Product Analytics</h3>
+                    <p class="service-card__text">Decisions grounded in data. I design experiments, track the metrics that matter, and translate quantitative findings into product moves that genuinely move the needle.</p>
+                </div>
+                <div class="service-card">
+                    <span class="service-card__icon"><i class="fas fa-brain"></i></span>
+                    <h3 class="service-card__title">Data Science</h3>
+                    <p class="service-card__text">From raw sensor signals to machine-learning pipelines, I extract value from complex datasets — turning data into insight, and insight into competitive advantage.</p>
+                </div>
+            </div>
+
+            <div class="section-cta">
+                <a href="projects.html" class="btn">See My Projects</a>
+            </div>
+        </section>
+
+
+        <!-- ════ ABOUT ME ════ -->
+        <section class="about" id="about">
+            <div class="about__inner">
+                <div class="about__photo-wrap">
+                    <img src="img/ce_2.JPG" alt="Christoph Emmert" class="about__photo">
+                </div>
+
+                <div class="about__content">
+                    <p class="about__label">About Me</p>
+                    <h2 class="about__heading">Who I Am</h2>
+                    <p class="about__tagline">Technology enthusiast &mdash; built with curiosity, data &amp; a love for sport.</p>
+                    <p class="about__text">I am a tech-savvy, open-minded young professional with roots in business, sport, and engineering, based in Munich. I thrive in complex situations and believe that the clearest signal of good thinking is a simple solution.</p>
+                    <p class="about__text">I am fascinated by products that help people live more fulfilled lives. Operating at the crossroads of people, engineering, product vision, and analytics, my goal is always to understand deeply — and then to act decisively.</p>
+
+                    <div class="about__traits">
+                        <div class="trait">
+                            <span class="trait__icon"><i class="fas fa-fire"></i></span>
+                            <span class="trait__label">Character</span>
+                            <span class="trait__value">Visionary</span>
+                        </div>
+                        <div class="trait">
+                            <span class="trait__icon"><i class="fas fa-puzzle-piece"></i></span>
+                            <span class="trait__label">Thinking</span>
+                            <span class="trait__value">Analytical</span>
+                        </div>
+                        <div class="trait">
+                            <span class="trait__icon"><i class="fas fa-user-friends"></i></span>
+                            <span class="trait__label">Style</span>
+                            <span class="trait__value">Collaborative</span>
+                        </div>
+                        <div class="trait">
+                            <span class="trait__icon"><i class="fas fa-map-marker-alt"></i></span>
+                            <span class="trait__label">Based in</span>
+                            <span class="trait__value">Munich, DE</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- ════ SKILLS ════ -->
+        <section class="skills-section" id="skillslist">
+            <div class="section-header">
+                <p class="section-header__label">Capabilities</p>
+                <h2 class="section-header__title">My Skills</h2>
+            </div>
+
+            <div class="skills-layout">
+                <div>
+                    <p class="skills-col__heading">Technical Skills</p>
+
+                    <div class="skill-bar">
+                        <div class="skill-bar__header">
+                            <span class="skill-bar__name">MS Excel</span>
+                            <span class="skill-bar__pct">95%</span>
+                        </div>
+                        <div class="skill-bar__track"><div class="skill-bar__fill" data-width="95"></div></div>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-bar__header">
+                            <span class="skill-bar__name">Python</span>
+                            <span class="skill-bar__pct">82%</span>
+                        </div>
+                        <div class="skill-bar__track"><div class="skill-bar__fill" data-width="82"></div></div>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-bar__header">
+                            <span class="skill-bar__name">SQL</span>
+                            <span class="skill-bar__pct">78%</span>
+                        </div>
+                        <div class="skill-bar__track"><div class="skill-bar__fill" data-width="78"></div></div>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-bar__header">
+                            <span class="skill-bar__name">SPSS</span>
+                            <span class="skill-bar__pct">70%</span>
+                        </div>
+                        <div class="skill-bar__track"><div class="skill-bar__fill" data-width="70"></div></div>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-bar__header">
+                            <span class="skill-bar__name">Matlab</span>
+                            <span class="skill-bar__pct">65%</span>
+                        </div>
+                        <div class="skill-bar__track"><div class="skill-bar__fill" data-width="65"></div></div>
+                    </div>
+                </div>
+
+                <div>
+                    <p class="skills-col__heading">Product &amp; Leadership Skills</p>
+
+                    <div class="soft-skill-list">
+                        <div class="soft-skill">
+                            <div class="soft-skill__icon"><i class="fas fa-fire"></i></div>
+                            <div>
+                                <p class="soft-skill__name">Visionary Thinking</p>
+                                <p class="soft-skill__desc">Connecting technological opportunity with human need — finding creative paths where others see dead ends.</p>
                             </div>
                         </div>
-                    </div>    
-                
-                    <div class="box">
-                            <div class="percent">
-                                <svg class="python">
-                                    <circle class="offset" cx="70" cy="70" r="70"></circle>
-                                    <circle cx="70" cy="70" r="70"></circle>
-                                </svg>
-                                <div class="num">
-                                    <p>Python</p>
-                                </div>
-                            </div>
-                    </div>
-
-                    <div class="box">
-                        <div class="percent">
-                            <svg class="python">
-                                <circle cx="70" cy="70" r="70"></circle>
-                                <circle cx="70" cy="70" r="70"></circle>
-                            </svg>
-                            <div class="num">
-                                <p>SPSS</p>
+                        <div class="soft-skill">
+                            <div class="soft-skill__icon"><i class="fas fa-puzzle-piece"></i></div>
+                            <div>
+                                <p class="soft-skill__name">Analytical Mindset</p>
+                                <p class="soft-skill__desc">Structured, critical thinking that surfaces the insight underneath the noise and drives better decisions.</p>
                             </div>
                         </div>
-                    </div>
-
-                    <div class="box">
-                        <div class="percent">
-                            <svg class="sql">
-                                <circle cx="70" cy="70" r="70"></circle>
-                                <circle cx="70" cy="70" r="70"></circle>
-                            </svg>
-                            <div class="num">
-                                <p>SQL</p>
+                        <div class="soft-skill">
+                            <div class="soft-skill__icon"><i class="fas fa-user-friends"></i></div>
+                            <div>
+                                <p class="soft-skill__name">Stakeholder Alignment</p>
+                                <p class="soft-skill__desc">Bringing diverse perspectives to the table and translating them into shared direction and forward motion.</p>
                             </div>
                         </div>
-                    </div>
-
-                    <div class="box">
-                        <div class="percent">
-                            <svg class="sql">
-                                <circle cx="70" cy="70" r="70"></circle>
-                                <circle cx="70" cy="70" r="70"></circle>
-                            </svg>
-                            <div class="num">
-                                <p>Matlab</p>
+                        <div class="soft-skill">
+                            <div class="soft-skill__icon"><i class="fas fa-route"></i></div>
+                            <div>
+                                <p class="soft-skill__name">Roadmap &amp; Prioritisation</p>
+                                <p class="soft-skill__desc">Ruthless focus on what matters — defining the what, the why, and the when, and holding the team to it.</p>
                             </div>
                         </div>
                     </div>
                 </div>
-
-                <div class="skills">
-                
-                    <div class="box">
-                        <div class="percent">
-                            <svg class="excel">
-                                <circle cx="70" cy="70" r="70"></circle>
-                                <circle cx="70" cy="70" r="70"></circle>
-                            </svg>
-                            <div class="num">
-                                <p>Product Vision</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="box">
-                        <div class="percent">
-                            <svg class="python">
-                                <circle cx="70" cy="70" r="70"></circle>
-                                <circle cx="70" cy="70" r="70"></circle>
-                            </svg>
-                            <div class="num">
-                                <p>Roadmap</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="box">
-                        <div class="percent">
-                            <svg class="python">
-                                <circle cx="70" cy="70" r="70"></circle>
-                                <circle cx="70" cy="70" r="70"></circle>
-                            </svg>
-                            <div class="num">
-                                <p>Priorization</p>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="box">
-                        <div class="percent">
-                            <svg class="sql">
-                                <circle cx="70" cy="70" r="70"></circle>
-                                <circle cx="70" cy="70" r="70"></circle>
-                            </svg>
-                            <div class="num">
-                                <p>Wireframing</p>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-
-            <p class="section__subtitle section__subtitle--skills">Personal Skills</p>
-           
-            <div class="skills">
-                <div class="skill">
-                    <i class="fas fa-fire fa-4x"></i>
-                    <h3>Visionary</h3>
-                    <p>I love connecting the dots between technological opportunities and human needs. Thereby my creative thinking enables me to come up with innovative and unique solutions.</p>
-                </div> <!--skill-->
-
-                <div class="skill">
-                    <i class="fas fa-puzzle-piece fa-4x"></i>
-                    <h3>Analytical</h3>
-                    <p>My critical and unconventional way of thinking allows me to discover unexpected possibilities and get to the bottom of things.</p>
-                </div> <!--skill-->
-
-                <div class="skill">
-                    <i class="fas fa-user-friends fa-4x"></i>
-                    <h3>Mediator</h3>
-                    <p>I am particularly strong when I sit around a table with others and try to understand different perspectives and thus bring together different points of view.</p>
-
-                </div> <!--skill-->
-
-            </div>    
-
+            </div>
         </section>
 
-        <!-- footer -->
-        <!-- Footer -->
+
+        <!-- ════ FOOTER ════ -->
         <footer class="footer" id="footer">
-            <!-- replace with your own email address -->
-
             <p class="section__subtitle section__subtitle--skills">Connect with me</p>
-
-
             <ul class="social-list">
-
                 <li class="social-list__item">
                     <a class="social-list__link" href="mailto:christoph.emmert@gmx.de">
                         <i class="fas fa-envelope"></i>
                     </a>
                 </li>
-
                 <li class="social-list__item">
                     <a class="social-list__link" href="https://www.linkedin.com/in/christoph-emmert/" target="_blank">
                         <i class="fab fa-linkedin"></i>
                     </a>
                 </li>
-                
                 <li class="social-list__item">
                     <a class="social-list__link" href="https://github.com/chrisdiss" target="_blank">
                         <i class="fab fa-github"></i>
@@ -261,7 +779,27 @@
             </ul>
             <p>Made with <i class="fas fa-heart"></i> and <i class="fas fa-coffee"></i></p>
         </footer>
-        
+
+
         <script src="js/index.js"></script>
+        <script>
+            const io = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (!entry.isIntersecting) return;
+                    const el = entry.target;
+                    const siblings = Array.from(el.parentElement.children);
+                    el.style.transitionDelay = (siblings.indexOf(el) * 90) + 'ms';
+                    el.classList.add('visible');
+                    el.querySelectorAll('.skill-bar__fill').forEach(bar => {
+                        bar.style.width = bar.dataset.width + '%';
+                    });
+                    io.unobserve(el);
+                });
+            }, { threshold: 0.12 });
+
+            document.querySelectorAll(
+                '.service-card, .about__photo-wrap, .about__content, .skill-bar, .soft-skill'
+            ).forEach(el => io.observe(el));
+        </script>
     </body>
 </html>
