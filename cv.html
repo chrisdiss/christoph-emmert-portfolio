@@ -8,241 +8,400 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" referrerpolicy="no-referrer"/>
         <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro:400,900|Source+Sans+Pro:300,900&display=swap" rel="stylesheet">
         <link rel="stylesheet" href="css/style.css">
-        <style>
-            /* ── CV page specific styles ── */
 
+        <style>
+            /* ── Reset & base ── */
+            *, *::before, *::after { box-sizing: border-box; }
+
+            /* ── CV Hero ── */
             .cv-hero {
                 background-color: var(--clr-dark);
                 color: var(--clr-light);
+                padding: 7em 2em 5em;
                 text-align: center;
-                padding: 5em 2em 6em;
-                min-height: 100vh;
-                display: flex;
-                flex-direction: column;
-                align-items: center;
-                justify-content: center;
-            }
-
-            .cv-hero h1 {
-                font-size: var(--fs-h1);
-                font-weight: var(--fw-bold);
-                letter-spacing: 3px;
-                text-transform: uppercase;
-            }
-
-            .cv-hero h1 span {
-                color: var(--clr-accent);
-            }
-
-            .wip-badge {
-                display: inline-block;
-                background: var(--clr-accent);
-                color: var(--clr-light);
-                font-family: var(--ff-secondary);
-                font-size: 0.85rem;
-                letter-spacing: 3px;
-                text-transform: uppercase;
-                padding: 0.4em 1.4em;
-                border-radius: 2px;
-                margin-bottom: 2.5em;
-                animation: pulse 2.5s ease-in-out infinite;
-            }
-
-            @keyframes pulse {
-                0%, 100% { opacity: 1; }
-                50%       { opacity: 0.5; }
-            }
-
-            /* ── Laptop scene ── */
-
-            .scene {
                 position: relative;
-                width: 340px;
-                margin: 2em auto 3em;
+                overflow: hidden;
             }
 
-            /* Desk */
-            .desk {
-                position: absolute;
-                bottom: -18px;
-                left: -30px;
-                right: -30px;
-                height: 18px;
-                background: #0a1e30;
-                border-radius: 0 0 6px 6px;
-            }
-
-            /* Laptop base */
-            .laptop-base {
-                position: relative;
-                width: 340px;
-                height: 24px;
-                background: #0d2033;
-                border-radius: 0 0 12px 12px;
-                margin: 0 auto;
-                box-shadow: 0 6px 20px rgba(0,0,0,0.5);
-            }
-
-            .laptop-base::after {
+            .cv-hero::after {
                 content: '';
                 position: absolute;
-                top: 6px;
-                left: 50%;
-                transform: translateX(-50%);
-                width: 60px;
-                height: 6px;
-                background: #0a1825;
-                border-radius: 3px;
+                bottom: 0; left: 0; right: 0;
+                height: 3px;
+                background: linear-gradient(90deg, transparent, var(--clr-accent), transparent);
             }
 
-            /* Laptop screen surround */
-            .laptop-screen-wrap {
-                width: 320px;
-                margin: 0 auto;
-                background: #0d2033;
-                border-radius: 8px 8px 0 0;
-                padding: 10px 10px 0;
-                box-shadow: 0 -4px 30px rgba(0,0,0,0.4);
-            }
-
-            /* Screen */
-            .laptop-screen {
-                background: #0b1220;
-                border-radius: 4px 4px 0 0;
-                height: 190px;
-                overflow: hidden;
-                position: relative;
+            .cv-hero__eyebrow {
                 font-family: var(--ff-secondary);
-                font-size: 11px;
-                color: #a8c6a8;
-                padding: 12px 14px;
-            }
-
-            .screen-line {
-                height: 11px;
-                margin-bottom: 6px;
-                display: flex;
-                align-items: center;
-                gap: 5px;
-                white-space: nowrap;
+                font-size: 0.8rem;
+                letter-spacing: 4px;
+                text-transform: uppercase;
+                color: var(--clr-accent);
+                margin: 0 0 1em;
                 opacity: 0;
-                animation: fadeLine 0.3s forwards;
+                animation: fadeUp 0.7s ease forwards 0.2s;
             }
 
-            .screen-line .kw  { color: #78b0d8; }
-            .screen-line .fn  { color: #dcdcaa; }
-            .screen-line .str { color: #ce9178; }
-            .screen-line .cm  { color: #5a6e5a; }
-            .screen-line .num { color: #b5cea8; }
-
-            /* stagger each line */
-            .screen-line:nth-child(1)  { animation-delay: 0.4s; }
-            .screen-line:nth-child(2)  { animation-delay: 0.9s; }
-            .screen-line:nth-child(3)  { animation-delay: 1.4s; }
-            .screen-line:nth-child(4)  { animation-delay: 1.9s; }
-            .screen-line:nth-child(5)  { animation-delay: 2.4s; }
-            .screen-line:nth-child(6)  { animation-delay: 2.9s; }
-            .screen-line:nth-child(7)  { animation-delay: 3.4s; }
-            .screen-line:nth-child(8)  { animation-delay: 3.9s; }
-            .screen-line:nth-child(9)  { animation-delay: 4.4s; }
-            .screen-line:nth-child(10) { animation-delay: 4.9s; }
-
-            @keyframes fadeLine {
-                from { opacity: 0; transform: translateX(-6px); }
-                to   { opacity: 1; transform: translateX(0); }
+            .cv-hero__name {
+                font-size: clamp(2.5rem, 6vw, 4.5rem);
+                font-weight: var(--fw-bold);
+                line-height: 1;
+                margin: 0 0 0.3em;
+                opacity: 0;
+                animation: fadeUp 0.7s ease forwards 0.4s;
             }
 
-            /* blinking cursor */
-            .cursor {
-                display: inline-block;
-                width: 7px;
-                height: 12px;
-                background: #a8c6a8;
-                vertical-align: middle;
-                animation: blink 0.8s step-end infinite;
-            }
-
-            @keyframes blink {
-                0%, 100% { opacity: 1; }
-                50%       { opacity: 0; }
-            }
-
-            /* ── Coder figure ── */
-
-            .coder {
-                position: relative;
-                width: 100px;
-                margin: 0 auto -6px;
-            }
-
-            .coder svg {
-                width: 100%;
-                height: auto;
-                overflow: visible;
-            }
-
-            /* arms bob gently while typing */
-            .arm-left {
-                transform-origin: 58px 75px;
-                animation: armLeft 0.35s ease-in-out infinite alternate;
-            }
-            .arm-right {
-                transform-origin: 68px 75px;
-                animation: armRight 0.35s ease-in-out infinite alternate;
-            }
-
-            @keyframes armLeft {
-                from { transform: rotate(-3deg); }
-                to   { transform: rotate(4deg); }
-            }
-            @keyframes armRight {
-                from { transform: rotate(4deg); }
-                to   { transform: rotate(-3deg); }
-            }
-
-            /* ── "Thanks to AI" reveal ── */
-
-            .thanks {
+            .cv-hero__title {
                 font-family: var(--ff-secondary);
-                font-size: 1.1rem;
+                font-size: clamp(0.9rem, 2vw, 1.1rem);
                 color: var(--clr-accent);
                 letter-spacing: 2px;
-                margin-top: 1em;
+                margin: 0 0 2em;
                 opacity: 0;
-                animation: thanksReveal 1s ease forwards;
-                animation-delay: 6s;
+                animation: fadeUp 0.7s ease forwards 0.6s;
             }
 
-            .thanks i {
-                color: #e05a5a;
-                margin: 0 0.3em;
+            .cv-hero__links {
+                display: flex;
+                justify-content: center;
+                gap: 1.5em;
+                flex-wrap: wrap;
+                opacity: 0;
+                animation: fadeUp 0.7s ease forwards 0.8s;
             }
 
-            @keyframes thanksReveal {
-                from { opacity: 0; transform: translateY(12px); }
-                to   { opacity: 1; transform: translateY(0); }
-            }
-
-            .cv-subtext {
-                margin-top: 2.5em;
-                color: rgba(255,255,255,0.45);
-                font-size: 0.9rem;
-                font-family: var(--ff-secondary);
+            .cv-hero__links a {
+                color: rgba(255,255,255,0.6);
+                text-decoration: none;
+                font-size: 0.85rem;
                 letter-spacing: 1px;
+                display: flex;
+                align-items: center;
+                gap: 0.4em;
+                transition: color 0.2s;
             }
 
-            /* screen glow on laptop */
-            .laptop-screen-wrap {
-                box-shadow: 0 0 24px rgba(10,126,133,0.25);
+            .cv-hero__links a:hover { color: var(--clr-accent); }
+            .cv-hero__links a i { font-size: 1rem; }
+
+            /* ── Shared section styles ── */
+            .cv-section {
+                padding: 5em 2em;
+                max-width: 860px;
+                margin: 0 auto;
             }
+
+            .cv-section--dark {
+                background: var(--clr-dark);
+                color: var(--clr-light);
+                max-width: 100%;
+                padding-left: 0;
+                padding-right: 0;
+            }
+
+            .cv-section--dark .cv-section__inner {
+                max-width: 860px;
+                margin: 0 auto;
+                padding: 0 2em;
+            }
+
+            .cv-section__label {
+                font-family: var(--ff-secondary);
+                font-size: 0.7rem;
+                letter-spacing: 5px;
+                text-transform: uppercase;
+                color: var(--clr-accent);
+                margin: 0 0 0.6em;
+            }
+
+            .cv-section__heading {
+                font-size: clamp(1.6rem, 3vw, 2.25rem);
+                font-weight: var(--fw-bold);
+                margin: 0 0 2.5em;
+                line-height: 1.1;
+            }
+
+            .cv-section--dark .cv-section__heading {
+                color: var(--clr-light);
+            }
+
+            /* ── Divider rule ── */
+            .cv-rule {
+                border: none;
+                height: 1px;
+                background: linear-gradient(90deg, var(--clr-accent), transparent);
+                margin: 0 0 3em;
+                opacity: 0.4;
+            }
+
+            /* ── Timeline ── */
+            .timeline {
+                position: relative;
+                padding-left: 2em;
+            }
+
+            .timeline::before {
+                content: '';
+                position: absolute;
+                top: 8px;
+                left: 0;
+                bottom: 8px;
+                width: 2px;
+                background: linear-gradient(180deg, var(--clr-accent), transparent);
+                opacity: 0.35;
+            }
+
+            /* ── Timeline card ── */
+            .tl-card {
+                position: relative;
+                padding: 0 0 3.5em 2em;
+                opacity: 0;
+                transform: translateY(24px);
+                transition: opacity 0.55s ease, transform 0.55s ease;
+            }
+
+            .tl-card.visible {
+                opacity: 1;
+                transform: translateY(0);
+            }
+
+            /* dot on the line */
+            .tl-card::before {
+                content: '';
+                position: absolute;
+                left: -5px;
+                top: 7px;
+                width: 12px;
+                height: 12px;
+                border-radius: 50%;
+                background: var(--clr-accent);
+                border: 2px solid var(--clr-light);
+                box-shadow: 0 0 0 3px rgba(10,126,133,0.25);
+            }
+
+            .tl-card__meta {
+                display: flex;
+                align-items: baseline;
+                flex-wrap: wrap;
+                gap: 0.5em 1.2em;
+                margin-bottom: 0.5em;
+            }
+
+            .tl-card__period {
+                font-family: var(--ff-secondary);
+                font-size: 0.72rem;
+                letter-spacing: 2px;
+                color: var(--clr-accent);
+                text-transform: uppercase;
+                white-space: nowrap;
+            }
+
+            .tl-card__company {
+                font-weight: var(--fw-bold);
+                font-size: 1.05rem;
+                color: var(--clr-dark);
+                line-height: 1;
+            }
+
+            .tl-card__role {
+                font-size: 0.82rem;
+                letter-spacing: 1px;
+                color: #4a6070;
+                text-transform: uppercase;
+                font-weight: var(--fw-bold);
+                margin-bottom: 0.4em;
+            }
+
+            .tl-card__desc {
+                font-size: 0.88rem;
+                color: #5a7080;
+                margin: 0 0 0.9em;
+                font-style: italic;
+                line-height: 1.5;
+                border-left: 2px solid var(--clr-accent);
+                padding-left: 0.8em;
+                opacity: 0.85;
+            }
+
+            .tl-card__bullets {
+                list-style: none;
+                margin: 0;
+                padding: 0;
+            }
+
+            .tl-card__bullets li {
+                position: relative;
+                padding-left: 1.2em;
+                margin-bottom: 0.45em;
+                font-size: 0.92rem;
+                line-height: 1.6;
+                color: #2a3e50;
+            }
+
+            .tl-card__bullets li::before {
+                content: '–';
+                position: absolute;
+                left: 0;
+                color: var(--clr-accent);
+                font-weight: 900;
+            }
+
+            /* Dark-background timeline adjustments */
+            .timeline--light .tl-card__company { color: var(--clr-light); }
+            .timeline--light .tl-card__role     { color: rgba(255,255,255,0.5); }
+            .timeline--light .tl-card__desc     { color: rgba(255,255,255,0.55); border-color: var(--clr-accent); }
+            .timeline--light .tl-card__bullets li { color: rgba(255,255,255,0.8); }
+            .timeline--light .tl-card::before   { border-color: var(--clr-dark); }
+
+            /* ── Skills grid ── */
+            .skills-grid {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+                gap: 1px;
+                background: rgba(255,255,255,0.06);
+                border: 1px solid rgba(255,255,255,0.08);
+                border-radius: 4px;
+                overflow: hidden;
+            }
+
+            .skill-cell {
+                padding: 1.4em 1.6em;
+                background: rgba(255,255,255,0.03);
+                transition: background 0.2s;
+                opacity: 0;
+                transform: translateY(16px);
+                transition: opacity 0.4s ease, transform 0.4s ease, background 0.2s;
+            }
+
+            .skill-cell.visible {
+                opacity: 1;
+                transform: translateY(0);
+            }
+
+            .skill-cell:hover { background: rgba(10,126,133,0.12); }
+
+            .skill-cell__cat {
+                font-family: var(--ff-secondary);
+                font-size: 0.65rem;
+                letter-spacing: 3px;
+                color: var(--clr-accent);
+                text-transform: uppercase;
+                margin: 0 0 0.6em;
+            }
+
+            .skill-cell__items {
+                font-size: 0.88rem;
+                color: rgba(255,255,255,0.7);
+                line-height: 1.7;
+                margin: 0;
+                padding: 0;
+                list-style: none;
+            }
+
+            .skill-cell__items li::before {
+                content: '· ';
+                color: var(--clr-accent);
+            }
+
+            /* ── Education cards ── */
+            .edu-grid {
+                display: grid;
+                gap: 1.2em;
+            }
+
+            @media (min-width: 640px) {
+                .edu-grid { grid-template-columns: 1fr 1fr; }
+            }
+
+            .edu-card {
+                border: 1px solid rgba(255,255,255,0.08);
+                border-radius: 4px;
+                padding: 1.4em 1.6em;
+                background: rgba(255,255,255,0.03);
+                transition: border-color 0.25s, background 0.25s;
+                opacity: 0;
+                transform: translateY(16px);
+                transition: opacity 0.45s ease, transform 0.45s ease, border-color 0.25s, background 0.25s;
+            }
+
+            .edu-card.visible { opacity: 1; transform: translateY(0); }
+            .edu-card:hover { border-color: var(--clr-accent); background: rgba(10,126,133,0.08); }
+
+            .edu-card__period {
+                font-family: var(--ff-secondary);
+                font-size: 0.68rem;
+                letter-spacing: 3px;
+                color: var(--clr-accent);
+                text-transform: uppercase;
+                margin: 0 0 0.4em;
+            }
+
+            .edu-card__school {
+                font-weight: var(--fw-bold);
+                font-size: 1rem;
+                color: var(--clr-light);
+                margin: 0 0 0.2em;
+            }
+
+            .edu-card__degree {
+                font-size: 0.85rem;
+                color: rgba(255,255,255,0.55);
+                margin: 0;
+            }
+
+            /* ── Keyframes ── */
+            @keyframes fadeUp {
+                from { opacity: 0; transform: translateY(18px); }
+                to   { opacity: 1; transform: translateY(0);    }
+            }
+
+            /* ── Languages row ── */
+            .lang-row {
+                display: flex;
+                gap: 2em;
+                flex-wrap: wrap;
+                margin-top: 0.5em;
+            }
+
+            .lang-item {
+                font-size: 0.88rem;
+                color: rgba(255,255,255,0.65);
+                display: flex;
+                flex-direction: column;
+                gap: 0.2em;
+                opacity: 0;
+                transform: translateY(10px);
+                transition: opacity 0.4s ease, transform 0.4s ease;
+            }
+
+            .lang-item.visible { opacity: 1; transform: translateY(0); }
+
+            .lang-item strong {
+                font-size: 0.95rem;
+                color: var(--clr-light);
+                font-weight: var(--fw-bold);
+            }
+
+            .lang-dots {
+                display: flex;
+                gap: 4px;
+                margin-top: 2px;
+            }
+
+            .lang-dot {
+                width: 8px; height: 8px;
+                border-radius: 50%;
+                background: var(--clr-accent);
+                opacity: 0.3;
+            }
+
+            .lang-dot.on { opacity: 1; }
         </style>
     </head>
 
     <body>
         <header>
-            <div class="logo">
-                <img src="" alt="">
-            </div>
+            <div class="logo"><img src="" alt=""></div>
             <nav>
                 <ul class="nav__list">
                     <li class="nav__item"><a href="index.html" class="nav__link">About Me</a></li>
@@ -253,91 +412,265 @@
             </nav>
         </header>
 
+        <!-- ── Hero ── -->
         <section class="cv-hero">
-
-            <div class="wip-badge">Work in Progress</div>
-
-            <h1>My <span>CV</span></h1>
-
-            <!-- Coder figure above the laptop -->
-            <div class="coder">
-                <svg viewBox="0 0 130 100" xmlns="http://www.w3.org/2000/svg">
-                    <!-- head -->
-                    <circle cx="65" cy="22" r="14" fill="#f5c5a3"/>
-                    <!-- hair -->
-                    <path d="M51 18 Q53 6 65 8 Q77 6 79 18 Q72 12 65 13 Q58 12 51 18Z" fill="#2c1a0e"/>
-                    <!-- body -->
-                    <rect x="52" y="36" width="26" height="30" rx="6" fill="#0a7e85"/>
-                    <!-- left arm -->
-                    <g class="arm-left">
-                        <line x1="52" y1="42" x2="32" y2="72" stroke="#0a7e85" stroke-width="7" stroke-linecap="round"/>
-                        <!-- left hand -->
-                        <circle cx="32" cy="72" r="5" fill="#f5c5a3"/>
-                    </g>
-                    <!-- right arm -->
-                    <g class="arm-right">
-                        <line x1="78" y1="42" x2="98" y2="72" stroke="#0a7e85" stroke-width="7" stroke-linecap="round"/>
-                        <!-- right hand -->
-                        <circle cx="98" cy="72" r="5" fill="#f5c5a3"/>
-                    </g>
-                    <!-- left leg -->
-                    <line x1="60" y1="66" x2="55" y2="90" stroke="#002845" stroke-width="7" stroke-linecap="round"/>
-                    <!-- right leg -->
-                    <line x1="70" y1="66" x2="75" y2="90" stroke="#002845" stroke-width="7" stroke-linecap="round"/>
-                </svg>
+            <p class="cv-hero__eyebrow">Curriculum Vitae</p>
+            <h1 class="cv-hero__name">Christoph Emmert</h1>
+            <p class="cv-hero__title">Co-Founder &amp; Product Leader &nbsp;·&nbsp; Munich, Germany</p>
+            <div class="cv-hero__links">
+                <a href="mailto:christoph.emmert@gmx.de"><i class="fas fa-envelope"></i> christoph.emmert@gmx.de</a>
+                <a href="https://www.linkedin.com/in/christoph-emmert/" target="_blank"><i class="fab fa-linkedin"></i> LinkedIn</a>
+                <a href="https://github.com/chrisdiss" target="_blank"><i class="fab fa-github"></i> GitHub</a>
             </div>
-
-            <!-- Laptop -->
-            <div class="scene">
-                <div class="laptop-screen-wrap">
-                    <div class="laptop-screen">
-                        <div class="screen-line"><span class="kw">import</span>&nbsp;pandas&nbsp;<span class="kw">as</span>&nbsp;pd</div>
-                        <div class="screen-line"><span class="kw">import</span>&nbsp;numpy&nbsp;<span class="kw">as</span>&nbsp;np</div>
-                        <div class="screen-line">&nbsp;</div>
-                        <div class="screen-line"><span class="cm"># load portfolio data</span></div>
-                        <div class="screen-line">df&nbsp;=&nbsp;pd.<span class="fn">read_csv</span>(<span class="str">'cv.csv'</span>)</div>
-                        <div class="screen-line">df&nbsp;=&nbsp;df.<span class="fn">dropna</span>()</div>
-                        <div class="screen-line">&nbsp;</div>
-                        <div class="screen-line"><span class="kw">def</span>&nbsp;<span class="fn">build_cv</span>(data):</div>
-                        <div class="screen-line">&nbsp;&nbsp;&nbsp;&nbsp;<span class="kw">return</span>&nbsp;data.<span class="fn">to_html</span>()</div>
-                        <div class="screen-line"><span class="fn">build_cv</span>(df)&nbsp;<span class="cursor"></span></div>
-                    </div>
-                </div>
-                <div class="laptop-base"></div>
-                <div class="desk"></div>
-            </div>
-
-            <p class="thanks">
-                Built with <i class="fas fa-heart"></i> &amp; <i class="fas fa-robot"></i> &mdash; Thanks to AI
-            </p>
-
-            <p class="cv-subtext">The full CV is coming soon. Stay tuned!</p>
-
         </section>
 
-        <!-- Footer -->
+        <!-- ── Experience ── -->
+        <div class="cv-section">
+            <p class="cv-section__label">Career</p>
+            <h2 class="cv-section__heading">Work Experience</h2>
+            <hr class="cv-rule">
+
+            <div class="timeline" id="timeline-exp">
+
+                <div class="tl-card">
+                    <div class="tl-card__meta">
+                        <span class="tl-card__period">2023 – Present</span>
+                        <span class="tl-card__company">Seroton GmbH</span>
+                    </div>
+                    <p class="tl-card__role">Co-Founder &amp; Head of Product &amp; Technology</p>
+                    <p class="tl-card__desc">Munich-based wellness startup combining AI, smart audio-haptic hardware, and mindfulness to deliver personalized, deeply effective relaxation experiences.</p>
+                    <ul class="tl-card__bullets">
+                        <li>Defined and drove the end-to-end product strategy — from concept through hardware/software integration and market launch.</li>
+                        <li>Led cross-functional team spanning hardware engineering, mobile development, and UX research.</li>
+                        <li>Secured $4M+ in seed funding and built key partnerships with wellness and rehabilitation centres.</li>
+                        <li>Established agile product processes and OKR framework to align the founding team around measurable goals.</li>
+                    </ul>
+                </div>
+
+                <div class="tl-card">
+                    <div class="tl-card__meta">
+                        <span class="tl-card__period">2022</span>
+                        <span class="tl-card__company">Digital Product School – UnternehmerTUM</span>
+                    </div>
+                    <p class="tl-card__role">Product Manager</p>
+                    <p class="tl-card__desc">TU Munich's flagship deep-tech innovation program, placing cross-functional teams on real-world product challenges in intensive three-month sprints.</p>
+                    <ul class="tl-card__bullets">
+                        <li>Led a cross-functional team through the full design-thinking cycle — problem framing, user research, prototyping, and validation.</li>
+                        <li>Ideated and validated the Seroton concept that ultimately became a funded company.</li>
+                        <li>Delivered a high-fidelity prototype and business case within a three-month programme.</li>
+                    </ul>
+                </div>
+
+                <div class="tl-card">
+                    <div class="tl-card__meta">
+                        <span class="tl-card__period">2021 – 2022</span>
+                        <span class="tl-card__company">Kaia Health</span>
+                    </div>
+                    <p class="tl-card__role">Product Data Analyst</p>
+                    <p class="tl-card__desc">Munich-based digital therapeutics leader providing AI-guided physiotherapy for chronic back pain and COPD, backed by clinical evidence.</p>
+                    <ul class="tl-card__bullets">
+                        <li>Analysed user engagement and retention data to surface actionable insights that shaped product priorities.</li>
+                        <li>Built and maintained dashboards tracking core product KPIs for leadership and product teams.</li>
+                        <li>Designed and evaluated A/B experiments to optimise onboarding flows and feature adoption.</li>
+                        <li>Translated complex data findings into clear product recommendations in collaboration with PMs.</li>
+                    </ul>
+                </div>
+
+                <div class="tl-card">
+                    <div class="tl-card__meta">
+                        <span class="tl-card__period">2017 – 2021</span>
+                        <span class="tl-card__company">Fraunhofer FIT</span>
+                    </div>
+                    <p class="tl-card__role">Research Assistant – Business &amp; Information Systems Engineering</p>
+                    <p class="tl-card__desc">Germany's leading applied research institute for IT and information systems, bridging academic research and industry applications.</p>
+                    <ul class="tl-card__bullets">
+                        <li>Developed a sensor-based exercise classification system using Arduino and Matlab, achieving &gt;95% detection accuracy.</li>
+                        <li>Applied machine learning techniques to extract meaningful patterns from complex behavioural and physiological datasets.</li>
+                        <li>Supported academic publications and presented findings in research review settings.</li>
+                        <li>Managed data collection, cleaning, and exploratory analysis pipelines across multiple projects.</li>
+                    </ul>
+                </div>
+
+                <div class="tl-card">
+                    <div class="tl-card__meta">
+                        <span class="tl-card__period">2017</span>
+                        <span class="tl-card__company">eGym</span>
+                    </div>
+                    <p class="tl-card__role">Intern – Business Development, Health Markets</p>
+                    <p class="tl-card__desc">Munich-based fitness technology company building smart gym equipment and digital training platforms for health and rehabilitation markets.</p>
+                    <ul class="tl-card__bullets">
+                        <li>Analysed health insurance and corporate wellness market opportunities to identify growth segments.</li>
+                        <li>Supported the development of B2B partnership proposals and sales materials.</li>
+                        <li>Conducted competitive benchmarking and prepared strategic briefings for the business development team.</li>
+                    </ul>
+                </div>
+
+                <div class="tl-card">
+                    <div class="tl-card__meta">
+                        <span class="tl-card__period">2016 – 2017</span>
+                        <span class="tl-card__company">Angelgate AG</span>
+                    </div>
+                    <p class="tl-card__role">Working Student – Investment Operations &amp; Deal Support</p>
+                    <p class="tl-card__desc">Early-stage venture capital firm investing in European technology startups across consumer and enterprise sectors.</p>
+                    <ul class="tl-card__bullets">
+                        <li>Supported deal sourcing and due diligence processes across the investment portfolio.</li>
+                        <li>Maintained portfolio databases and produced regular investor reporting materials.</li>
+                        <li>Evaluated startup pitch decks and compiled structured market analysis summaries.</li>
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- ── Education ── -->
+        <div class="cv-section--dark">
+            <div class="cv-section__inner">
+                <p class="cv-section__label">Background</p>
+                <h2 class="cv-section__heading">Education</h2>
+                <hr class="cv-rule">
+
+                <div class="edu-grid" id="edu-grid">
+                    <div class="edu-card">
+                        <p class="edu-card__period">2019 – 2022</p>
+                        <p class="edu-card__school">University of Bayreuth &amp; TU Munich</p>
+                        <p class="edu-card__degree">M.Sc. Engineering &amp; Sport Science<br><span style="color:var(--clr-accent)">Product Management specialisation</span></p>
+                    </div>
+                    <div class="edu-card">
+                        <p class="edu-card__period">2013 – 2017</p>
+                        <p class="edu-card__school">University of Bayreuth</p>
+                        <p class="edu-card__degree">B.Sc. Business Administration &amp; Sport Science</p>
+                    </div>
+                    <div class="edu-card">
+                        <p class="edu-card__period">2021</p>
+                        <p class="edu-card__school">Udacity</p>
+                        <p class="edu-card__degree">Data Science Nanodegree<br>Data Analyst Nanodegree</p>
+                    </div>
+                    <div class="edu-card">
+                        <p class="edu-card__period">2022</p>
+                        <p class="edu-card__school">Technical University of Munich</p>
+                        <p class="edu-card__degree">Product Management Certificate</p>
+                    </div>
+                </div>
+
+                <!-- Languages -->
+                <p class="cv-section__label" style="margin-top: 3em;">Languages</p>
+                <div class="lang-row" id="lang-row">
+                    <div class="lang-item">
+                        <strong>German</strong>
+                        <div class="lang-dots">
+                            <div class="lang-dot on"></div><div class="lang-dot on"></div><div class="lang-dot on"></div><div class="lang-dot on"></div><div class="lang-dot on"></div>
+                        </div>
+                        <span>Native</span>
+                    </div>
+                    <div class="lang-item">
+                        <strong>English</strong>
+                        <div class="lang-dots">
+                            <div class="lang-dot on"></div><div class="lang-dot on"></div><div class="lang-dot on"></div><div class="lang-dot on"></div><div class="lang-dot on"></div>
+                        </div>
+                        <span>Fluent</span>
+                    </div>
+                    <div class="lang-item">
+                        <strong>Spanish</strong>
+                        <div class="lang-dots">
+                            <div class="lang-dot on"></div><div class="lang-dot on"></div><div class="lang-dot on"></div><div class="lang-dot"></div><div class="lang-dot"></div>
+                        </div>
+                        <span>Conversational</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ── Skills ── -->
+        <div class="cv-section" style="padding-bottom: 0;">
+            <p class="cv-section__label">Expertise</p>
+            <h2 class="cv-section__heading">Skills</h2>
+            <hr class="cv-rule">
+        </div>
+
+        <div class="cv-section--dark" style="padding: 0 0 5em;">
+            <div class="cv-section__inner" style="padding-top: 2em;">
+                <div class="skills-grid" id="skills-grid">
+                    <div class="skill-cell">
+                        <p class="skill-cell__cat">Product</p>
+                        <ul class="skill-cell__items">
+                            <li>Product Strategy &amp; Vision</li>
+                            <li>Roadmap Planning</li>
+                            <li>User Research</li>
+                            <li>Agile / Scrum</li>
+                            <li>OKRs &amp; KPIs</li>
+                            <li>Wireframing</li>
+                        </ul>
+                    </div>
+                    <div class="skill-cell">
+                        <p class="skill-cell__cat">Data &amp; Analytics</p>
+                        <ul class="skill-cell__items">
+                            <li>Python (Pandas, NumPy)</li>
+                            <li>SQL</li>
+                            <li>A/B Testing</li>
+                            <li>Matlab</li>
+                            <li>SPSS</li>
+                            <li>MS Excel</li>
+                        </ul>
+                    </div>
+                    <div class="skill-cell">
+                        <p class="skill-cell__cat">Technology</p>
+                        <ul class="skill-cell__items">
+                            <li>Machine Learning</li>
+                            <li>Sensor Systems</li>
+                            <li>Arduino / Hardware</li>
+                            <li>Full-Stack Basics</li>
+                            <li>Data Pipelines</li>
+                        </ul>
+                    </div>
+                    <div class="skill-cell">
+                        <p class="skill-cell__cat">Leadership</p>
+                        <ul class="skill-cell__items">
+                            <li>Cross-functional Teams</li>
+                            <li>Stakeholder Management</li>
+                            <li>Fundraising</li>
+                            <li>Strategic Thinking</li>
+                            <li>Mentoring</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ── Footer ── -->
         <footer class="footer" id="footer">
             <p class="section__subtitle section__subtitle--skills">Connect with me</p>
             <ul class="social-list">
                 <li class="social-list__item">
-                    <a class="social-list__link" href="mailto:christoph.emmert@gmx.de">
-                        <i class="fas fa-envelope"></i>
-                    </a>
+                    <a class="social-list__link" href="mailto:christoph.emmert@gmx.de"><i class="fas fa-envelope"></i></a>
                 </li>
                 <li class="social-list__item">
-                    <a class="social-list__link" href="https://www.linkedin.com/in/christoph-emmert/" target="_blank">
-                        <i class="fab fa-linkedin"></i>
-                    </a>
+                    <a class="social-list__link" href="https://www.linkedin.com/in/christoph-emmert/" target="_blank"><i class="fab fa-linkedin"></i></a>
                 </li>
                 <li class="social-list__item">
-                    <a class="social-list__link" href="https://github.com/chrisdiss" target="_blank">
-                        <i class="fab fa-github"></i>
-                    </a>
+                    <a class="social-list__link" href="https://github.com/chrisdiss" target="_blank"><i class="fab fa-github"></i></a>
                 </li>
             </ul>
             <p>Made with <i class="fas fa-heart"></i> and <i class="fas fa-coffee"></i></p>
         </footer>
 
         <script src="js/index.js"></script>
+        <script>
+            // Intersection Observer – trigger .visible on all animated elements
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach((entry, i) => {
+                    if (entry.isIntersecting) {
+                        // stagger siblings by their index within parent
+                        const siblings = Array.from(entry.target.parentElement.children);
+                        const idx = siblings.indexOf(entry.target);
+                        entry.target.style.transitionDelay = (idx * 80) + 'ms';
+                        entry.target.classList.add('visible');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.12 });
+
+            document.querySelectorAll('.tl-card, .edu-card, .skill-cell, .lang-item')
+                    .forEach(el => observer.observe(el));
+        </script>
     </body>
 </html>
