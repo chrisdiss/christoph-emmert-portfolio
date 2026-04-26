@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>CV – Christoph Emmert</title>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" referrerpolicy="no-referrer"/>
+        <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro:400,900|Source+Sans+Pro:300,900&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="css/style.css">
+        <style>
+            /* ── CV page specific styles ── */
+
+            .cv-hero {
+                background-color: var(--clr-dark);
+                color: var(--clr-light);
+                text-align: center;
+                padding: 5em 2em 6em;
+                min-height: 100vh;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+            }
+
+            .cv-hero h1 {
+                font-size: var(--fs-h1);
+                font-weight: var(--fw-bold);
+                letter-spacing: 3px;
+                text-transform: uppercase;
+            }
+
+            .cv-hero h1 span {
+                color: var(--clr-accent);
+            }
+
+            .wip-badge {
+                display: inline-block;
+                background: var(--clr-accent);
+                color: var(--clr-light);
+                font-family: var(--ff-secondary);
+                font-size: 0.85rem;
+                letter-spacing: 3px;
+                text-transform: uppercase;
+                padding: 0.4em 1.4em;
+                border-radius: 2px;
+                margin-bottom: 2.5em;
+                animation: pulse 2.5s ease-in-out infinite;
+            }
+
+            @keyframes pulse {
+                0%, 100% { opacity: 1; }
+                50%       { opacity: 0.5; }
+            }
+
+            /* ── Laptop scene ── */
+
+            .scene {
+                position: relative;
+                width: 340px;
+                margin: 2em auto 3em;
+            }
+
+            /* Desk */
+            .desk {
+                position: absolute;
+                bottom: -18px;
+                left: -30px;
+                right: -30px;
+                height: 18px;
+                background: #0a1e30;
+                border-radius: 0 0 6px 6px;
+            }
+
+            /* Laptop base */
+            .laptop-base {
+                position: relative;
+                width: 340px;
+                height: 24px;
+                background: #0d2033;
+                border-radius: 0 0 12px 12px;
+                margin: 0 auto;
+                box-shadow: 0 6px 20px rgba(0,0,0,0.5);
+            }
+
+            .laptop-base::after {
+                content: '';
+                position: absolute;
+                top: 6px;
+                left: 50%;
+                transform: translateX(-50%);
+                width: 60px;
+                height: 6px;
+                background: #0a1825;
+                border-radius: 3px;
+            }
+
+            /* Laptop screen surround */
+            .laptop-screen-wrap {
+                width: 320px;
+                margin: 0 auto;
+                background: #0d2033;
+                border-radius: 8px 8px 0 0;
+                padding: 10px 10px 0;
+                box-shadow: 0 -4px 30px rgba(0,0,0,0.4);
+            }
+
+            /* Screen */
+            .laptop-screen {
+                background: #0b1220;
+                border-radius: 4px 4px 0 0;
+                height: 190px;
+                overflow: hidden;
+                position: relative;
+                font-family: var(--ff-secondary);
+                font-size: 11px;
+                color: #a8c6a8;
+                padding: 12px 14px;
+            }
+
+            .screen-line {
+                height: 11px;
+                margin-bottom: 6px;
+                display: flex;
+                align-items: center;
+                gap: 5px;
+                white-space: nowrap;
+                opacity: 0;
+                animation: fadeLine 0.3s forwards;
+            }
+
+            .screen-line .kw  { color: #78b0d8; }
+            .screen-line .fn  { color: #dcdcaa; }
+            .screen-line .str { color: #ce9178; }
+            .screen-line .cm  { color: #5a6e5a; }
+            .screen-line .num { color: #b5cea8; }
+
+            /* stagger each line */
+            .screen-line:nth-child(1)  { animation-delay: 0.4s; }
+            .screen-line:nth-child(2)  { animation-delay: 0.9s; }
+            .screen-line:nth-child(3)  { animation-delay: 1.4s; }
+            .screen-line:nth-child(4)  { animation-delay: 1.9s; }
+            .screen-line:nth-child(5)  { animation-delay: 2.4s; }
+            .screen-line:nth-child(6)  { animation-delay: 2.9s; }
+            .screen-line:nth-child(7)  { animation-delay: 3.4s; }
+            .screen-line:nth-child(8)  { animation-delay: 3.9s; }
+            .screen-line:nth-child(9)  { animation-delay: 4.4s; }
+            .screen-line:nth-child(10) { animation-delay: 4.9s; }
+
+            @keyframes fadeLine {
+                from { opacity: 0; transform: translateX(-6px); }
+                to   { opacity: 1; transform: translateX(0); }
+            }
+
+            /* blinking cursor */
+            .cursor {
+                display: inline-block;
+                width: 7px;
+                height: 12px;
+                background: #a8c6a8;
+                vertical-align: middle;
+                animation: blink 0.8s step-end infinite;
+            }
+
+            @keyframes blink {
+                0%, 100% { opacity: 1; }
+                50%       { opacity: 0; }
+            }
+
+            /* ── Coder figure ── */
+
+            .coder {
+                position: relative;
+                width: 100px;
+                margin: 0 auto -6px;
+            }
+
+            .coder svg {
+                width: 100%;
+                height: auto;
+                overflow: visible;
+            }
+
+            /* arms bob gently while typing */
+            .arm-left {
+                transform-origin: 58px 75px;
+                animation: armLeft 0.35s ease-in-out infinite alternate;
+            }
+            .arm-right {
+                transform-origin: 68px 75px;
+                animation: armRight 0.35s ease-in-out infinite alternate;
+            }
+
+            @keyframes armLeft {
+                from { transform: rotate(-3deg); }
+                to   { transform: rotate(4deg); }
+            }
+            @keyframes armRight {
+                from { transform: rotate(4deg); }
+                to   { transform: rotate(-3deg); }
+            }
+
+            /* ── "Thanks to AI" reveal ── */
+
+            .thanks {
+                font-family: var(--ff-secondary);
+                font-size: 1.1rem;
+                color: var(--clr-accent);
+                letter-spacing: 2px;
+                margin-top: 1em;
+                opacity: 0;
+                animation: thanksReveal 1s ease forwards;
+                animation-delay: 6s;
+            }
+
+            .thanks i {
+                color: #e05a5a;
+                margin: 0 0.3em;
+            }
+
+            @keyframes thanksReveal {
+                from { opacity: 0; transform: translateY(12px); }
+                to   { opacity: 1; transform: translateY(0); }
+            }
+
+            .cv-subtext {
+                margin-top: 2.5em;
+                color: rgba(255,255,255,0.45);
+                font-size: 0.9rem;
+                font-family: var(--ff-secondary);
+                letter-spacing: 1px;
+            }
+
+            /* screen glow on laptop */
+            .laptop-screen-wrap {
+                box-shadow: 0 0 24px rgba(10,126,133,0.25);
+            }
+        </style>
+    </head>
+
+    <body>
+        <header>
+            <div class="logo">
+                <img src="" alt="">
+            </div>
+            <nav>
+                <ul class="nav__list">
+                    <li class="nav__item"><a href="index.html" class="nav__link">About Me</a></li>
+                    <li class="nav__item"><a href="projects.html" class="nav__link">My Projects</a></li>
+                    <li class="nav__item"><a href="cv.html" class="nav__link active">CV</a></li>
+                    <li class="nav__item" style="float:right"><a class="active" href="#footer">Contact</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <section class="cv-hero">
+
+            <div class="wip-badge">Work in Progress</div>
+
+            <h1>My <span>CV</span></h1>
+
+            <!-- Coder figure above the laptop -->
+            <div class="coder">
+                <svg viewBox="0 0 130 100" xmlns="http://www.w3.org/2000/svg">
+                    <!-- head -->
+                    <circle cx="65" cy="22" r="14" fill="#f5c5a3"/>
+                    <!-- hair -->
+                    <path d="M51 18 Q53 6 65 8 Q77 6 79 18 Q72 12 65 13 Q58 12 51 18Z" fill="#2c1a0e"/>
+                    <!-- body -->
+                    <rect x="52" y="36" width="26" height="30" rx="6" fill="#0a7e85"/>
+                    <!-- left arm -->
+                    <g class="arm-left">
+                        <line x1="52" y1="42" x2="32" y2="72" stroke="#0a7e85" stroke-width="7" stroke-linecap="round"/>
+                        <!-- left hand -->
+                        <circle cx="32" cy="72" r="5" fill="#f5c5a3"/>
+                    </g>
+                    <!-- right arm -->
+                    <g class="arm-right">
+                        <line x1="78" y1="42" x2="98" y2="72" stroke="#0a7e85" stroke-width="7" stroke-linecap="round"/>
+                        <!-- right hand -->
+                        <circle cx="98" cy="72" r="5" fill="#f5c5a3"/>
+                    </g>
+                    <!-- left leg -->
+                    <line x1="60" y1="66" x2="55" y2="90" stroke="#002845" stroke-width="7" stroke-linecap="round"/>
+                    <!-- right leg -->
+                    <line x1="70" y1="66" x2="75" y2="90" stroke="#002845" stroke-width="7" stroke-linecap="round"/>
+                </svg>
+            </div>
+
+            <!-- Laptop -->
+            <div class="scene">
+                <div class="laptop-screen-wrap">
+                    <div class="laptop-screen">
+                        <div class="screen-line"><span class="kw">import</span>&nbsp;pandas&nbsp;<span class="kw">as</span>&nbsp;pd</div>
+                        <div class="screen-line"><span class="kw">import</span>&nbsp;numpy&nbsp;<span class="kw">as</span>&nbsp;np</div>
+                        <div class="screen-line">&nbsp;</div>
+                        <div class="screen-line"><span class="cm"># load portfolio data</span></div>
+                        <div class="screen-line">df&nbsp;=&nbsp;pd.<span class="fn">read_csv</span>(<span class="str">'cv.csv'</span>)</div>
+                        <div class="screen-line">df&nbsp;=&nbsp;df.<span class="fn">dropna</span>()</div>
+                        <div class="screen-line">&nbsp;</div>
+                        <div class="screen-line"><span class="kw">def</span>&nbsp;<span class="fn">build_cv</span>(data):</div>
+                        <div class="screen-line">&nbsp;&nbsp;&nbsp;&nbsp;<span class="kw">return</span>&nbsp;data.<span class="fn">to_html</span>()</div>
+                        <div class="screen-line"><span class="fn">build_cv</span>(df)&nbsp;<span class="cursor"></span></div>
+                    </div>
+                </div>
+                <div class="laptop-base"></div>
+                <div class="desk"></div>
+            </div>
+
+            <p class="thanks">
+                Built with <i class="fas fa-heart"></i> &amp; <i class="fas fa-robot"></i> &mdash; Thanks to AI
+            </p>
+
+            <p class="cv-subtext">The full CV is coming soon. Stay tuned!</p>
+
+        </section>
+
+        <!-- Footer -->
+        <footer class="footer" id="footer">
+            <p class="section__subtitle section__subtitle--skills">Connect with me</p>
+            <ul class="social-list">
+                <li class="social-list__item">
+                    <a class="social-list__link" href="mailto:christoph.emmert@gmx.de">
+                        <i class="fas fa-envelope"></i>
+                    </a>
+                </li>
+                <li class="social-list__item">
+                    <a class="social-list__link" href="https://www.linkedin.com/in/christoph-emmert/" target="_blank">
+                        <i class="fab fa-linkedin"></i>
+                    </a>
+                </li>
+                <li class="social-list__item">
+                    <a class="social-list__link" href="https://github.com/chrisdiss" target="_blank">
+                        <i class="fab fa-github"></i>
+                    </a>
+                </li>
+            </ul>
+            <p>Made with <i class="fas fa-heart"></i> and <i class="fas fa-coffee"></i></p>
+        </footer>
+
+        <script src="js/index.js"></script>
+    </body>
+</html>
