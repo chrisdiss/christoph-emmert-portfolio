@@ -1,805 +1,376 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Christoph Emmert – Product Manager &amp; Data Analyst</title>
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" referrerpolicy="no-referrer"/>
-        <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro:400,900|Source+Sans+Pro:300,900&display=swap" rel="stylesheet">
-        <link rel="stylesheet" href="css/style.css">
-
-        <style>
-            html { scroll-behavior: smooth; }
-            *, *::before, *::after { box-sizing: border-box; }
-
-            /* ════════════════════════════
-               HERO
-            ════════════════════════════ */
-            .hero {
-                min-height: 100vh;
-                background: var(--clr-dark);
-                display: flex;
-                align-items: center;
-                position: relative;
-                overflow: hidden;
-                padding: 7em 2em 5em;
-            }
-
-            .hero::before {
-                content: '';
-                position: absolute;
-                inset: 0;
-                background-image: radial-gradient(rgba(10,126,133,0.18) 1px, transparent 1px);
-                background-size: 36px 36px;
-                pointer-events: none;
-            }
-
-            .hero::after {
-                content: '';
-                position: absolute;
-                bottom: 0; left: 0; right: 0;
-                height: 140px;
-                background: linear-gradient(transparent, var(--clr-dark));
-                pointer-events: none;
-            }
-
-            .hero__inner {
-                max-width: 1080px;
-                margin: 0 auto;
-                width: 100%;
-                display: grid;
-                grid-template-columns: 1fr 280px;
-                gap: 5em;
-                align-items: center;
-                position: relative;
-                z-index: 1;
-            }
-
-            .hero__eyebrow {
-                font-family: var(--ff-secondary);
-                font-size: 0.72rem;
-                letter-spacing: 5px;
-                text-transform: uppercase;
-                color: var(--clr-accent);
-                margin: 0 0 1.1em;
-                opacity: 0;
-                animation: fadeUp 0.65s ease forwards 0.15s;
-            }
-
-            .hero__name {
-                font-size: clamp(2.6rem, 6.5vw, 5rem);
-                font-weight: var(--fw-bold);
-                color: var(--clr-light);
-                line-height: 1;
-                margin: 0 0 0.25em;
-                opacity: 0;
-                animation: fadeUp 0.65s ease forwards 0.3s;
-            }
-
-            .hero__role {
-                font-family: var(--ff-secondary);
-                font-size: clamp(0.8rem, 1.6vw, 1rem);
-                color: rgba(255,255,255,0.45);
-                letter-spacing: 2px;
-                margin: 0 0 2em;
-                opacity: 0;
-                animation: fadeUp 0.65s ease forwards 0.45s;
-            }
-
-            .hero__role em {
-                color: var(--clr-accent);
-                font-style: normal;
-            }
-
-            .hero__bio {
-                font-size: 1rem;
-                color: rgba(255,255,255,0.6);
-                line-height: 1.85;
-                max-width: 500px;
-                margin: 0 0 2.5em;
-                opacity: 0;
-                animation: fadeUp 0.65s ease forwards 0.6s;
-            }
-
-            .hero__actions {
-                display: flex;
-                gap: 1em;
-                flex-wrap: wrap;
-                opacity: 0;
-                animation: fadeUp 0.65s ease forwards 0.75s;
-            }
-
-            .btn-outline {
-                display: inline-block;
-                padding: .55em 2em;
-                border: 1px solid rgba(255,255,255,0.2);
-                color: rgba(255,255,255,0.65);
-                text-decoration: none;
-                font-size: .76rem;
-                text-transform: uppercase;
-                letter-spacing: 2px;
-                font-weight: var(--fw-bold);
-                transition: border-color 0.22s, color 0.22s;
-            }
-
-            .btn-outline:hover {
-                border-color: var(--clr-accent);
-                color: var(--clr-accent);
-            }
-
-            .hero__photo-wrap {
-                position: relative;
-                opacity: 0;
-                animation: fadeIn 0.9s ease forwards 0.55s;
-            }
-
-            .hero__photo-wrap::after {
-                content: '';
-                position: absolute;
-                inset: 0;
-                border: 1px solid rgba(10,126,133,0.45);
-                border-radius: 4px;
-                transform: translate(12px, 12px);
-                pointer-events: none;
-                transition: transform 0.3s ease;
-            }
-
-            .hero__photo-wrap:hover::after { transform: translate(6px, 6px); }
-
-            .hero__photo {
-                width: 100%;
-                aspect-ratio: 3/4;
-                object-fit: cover;
-                object-position: top;
-                border-radius: 4px;
-                display: block;
-                filter: grayscale(15%);
-                transition: filter 0.4s ease;
-            }
-
-            .hero__photo-wrap:hover .hero__photo { filter: grayscale(0); }
-
-            .scroll-hint {
-                position: absolute;
-                bottom: 2.2em;
-                left: 50%;
-                transform: translateX(-50%);
-                display: flex;
-                flex-direction: column;
-                align-items: center;
-                gap: 0.5em;
-                color: rgba(255,255,255,0.2);
-                font-family: var(--ff-secondary);
-                font-size: 0.6rem;
-                letter-spacing: 3px;
-                text-transform: uppercase;
-                z-index: 2;
-                opacity: 0;
-                animation: fadeIn 1s ease forwards 1.3s;
-            }
-
-            .scroll-hint__bar {
-                width: 1px;
-                height: 48px;
-                background: linear-gradient(var(--clr-accent), transparent);
-                animation: barDrop 1.8s ease-in-out infinite;
-            }
-
-            @keyframes barDrop {
-                0%   { transform: scaleY(0); transform-origin: top;    opacity: 1; }
-                50%  { transform: scaleY(1); transform-origin: top;    opacity: 1; }
-                51%  { transform: scaleY(1); transform-origin: bottom; opacity: 1; }
-                100% { transform: scaleY(0); transform-origin: bottom; opacity: 0; }
-            }
-
-            /* ════════════════════════════
-               WHAT I DO
-            ════════════════════════════ */
-            .what-i-do {
-                background: #f5f8fc;
-                padding: 6em 2em;
-            }
-
-            .section-header {
-                text-align: center;
-                max-width: 580px;
-                margin: 0 auto 3.5em;
-            }
-
-            .section-header__label {
-                font-family: var(--ff-secondary);
-                font-size: 0.68rem;
-                letter-spacing: 5px;
-                text-transform: uppercase;
-                color: var(--clr-accent);
-                margin: 0 0 0.5em;
-            }
-
-            .section-header__title {
-                font-size: clamp(1.6rem, 3vw, 2.4rem);
-                font-weight: var(--fw-bold);
-                color: var(--clr-dark);
-                margin: 0;
-                line-height: 1.1;
-            }
-
-            .services-grid {
-                display: grid;
-                grid-template-columns: repeat(3, 1fr);
-                gap: 1px;
-                max-width: 960px;
-                margin: 0 auto 3em;
-                background: #dde5ef;
-            }
-
-            .service-card {
-                background: #fff;
-                padding: 2.6em 2em;
-                position: relative;
-                overflow: hidden;
-                opacity: 0;
-                transform: translateY(22px);
-                transition: opacity 0.5s ease, transform 0.5s ease;
-            }
-
-            .service-card.visible { opacity: 1; transform: translateY(0); }
-
-            .service-card:hover {
-                z-index: 1;
-                box-shadow: 0 20px 50px rgba(0,40,69,0.09);
-            }
-
-            .service-card::before {
-                content: '';
-                position: absolute;
-                top: 0; left: 0; right: 0;
-                height: 2px;
-                background: var(--clr-accent);
-                transform: scaleX(0);
-                transform-origin: left;
-                transition: transform 0.35s ease;
-            }
-
-            .service-card:hover::before { transform: scaleX(1); }
-
-            .service-card__icon {
-                font-size: 1.5rem;
-                color: var(--clr-accent);
-                margin-bottom: 1.2em;
-                display: block;
-            }
-
-            .service-card__title {
-                font-size: 1rem;
-                font-weight: var(--fw-bold);
-                color: var(--clr-dark);
-                margin: 0 0 0.7em;
-            }
-
-            .service-card__text {
-                font-size: 0.875rem;
-                color: #5a7080;
-                line-height: 1.8;
-                margin: 0;
-            }
-
-            .section-cta { text-align: center; }
-
-            /* ════════════════════════════
-               ABOUT ME
-            ════════════════════════════ */
-            .about {
-                background: var(--clr-dark);
-                padding: 6em 2em;
-                position: relative;
-                overflow: hidden;
-            }
-
-            .about::before {
-                content: '';
-                position: absolute;
-                top: 0; left: 0; right: 0;
-                height: 1px;
-                background: linear-gradient(90deg, transparent, var(--clr-accent), transparent);
-            }
-
-            .about__inner {
-                max-width: 1000px;
-                margin: 0 auto;
-                display: grid;
-                grid-template-columns: 360px 1fr;
-                gap: 5em;
-                align-items: center;
-            }
-
-            .about__photo-wrap {
-                position: relative;
-                opacity: 0;
-                transform: translateX(-18px);
-                transition: opacity 0.65s ease, transform 0.65s ease;
-            }
-
-            .about__photo-wrap.visible { opacity: 1; transform: translateX(0); }
-
-            .about__photo-wrap::after {
-                content: '';
-                position: absolute;
-                inset: 0;
-                border: 1px solid rgba(10,126,133,0.35);
-                border-radius: 4px;
-                transform: translate(-12px, 12px);
-                pointer-events: none;
-            }
-
-            .about__photo {
-                width: 100%;
-                aspect-ratio: 3/4;
-                object-fit: cover;
-                object-position: top;
-                border-radius: 4px;
-                display: block;
-                filter: grayscale(20%);
-                transition: filter 0.4s ease;
-            }
-
-            .about__photo-wrap:hover .about__photo { filter: grayscale(0); }
-
-            .about__content {
-                color: var(--clr-light);
-                opacity: 0;
-                transform: translateX(18px);
-                transition: opacity 0.65s ease 0.18s, transform 0.65s ease 0.18s;
-            }
-
-            .about__content.visible { opacity: 1; transform: translateX(0); }
-
-            .about__label {
-                font-family: var(--ff-secondary);
-                font-size: 0.68rem;
-                letter-spacing: 5px;
-                text-transform: uppercase;
-                color: var(--clr-accent);
-                margin: 0 0 0.6em;
-            }
-
-            .about__heading {
-                font-size: clamp(1.8rem, 3vw, 2.4rem);
-                font-weight: var(--fw-bold);
-                margin: 0 0 0.9em;
-                line-height: 1.1;
-            }
-
-            .about__tagline {
-                font-family: var(--ff-secondary);
-                font-size: 0.8rem;
-                color: var(--clr-accent);
-                letter-spacing: 1.5px;
-                border-left: 2px solid var(--clr-accent);
-                padding-left: 0.9em;
-                margin: 0 0 1.8em;
-                line-height: 1.6;
-            }
-
-            .about__text {
-                font-size: 0.94rem;
-                color: rgba(255,255,255,0.62);
-                line-height: 1.9;
-                margin: 0 0 1em;
-            }
-
-            .about__traits {
-                display: flex;
-                gap: 2.5em;
-                flex-wrap: wrap;
-                margin-top: 2.5em;
-                padding-top: 2.2em;
-                border-top: 1px solid rgba(255,255,255,0.07);
-            }
-
-            .trait { display: flex; flex-direction: column; gap: 0.25em; }
-
-            .trait__icon { font-size: 1rem; color: var(--clr-accent); margin-bottom: 0.1em; }
-
-            .trait__label {
-                font-family: var(--ff-secondary);
-                font-size: 0.64rem;
-                letter-spacing: 2.5px;
-                text-transform: uppercase;
-                color: rgba(255,255,255,0.35);
-            }
-
-            .trait__value {
-                font-weight: var(--fw-bold);
-                font-size: 0.88rem;
-                color: var(--clr-light);
-            }
-
-            /* ════════════════════════════
-               SKILLS
-            ════════════════════════════ */
-            .skills-section {
-                background: #f5f8fc;
-                padding: 6em 2em;
-            }
-
-            .skills-layout {
-                display: grid;
-                grid-template-columns: 1fr 1fr;
-                gap: 5em;
-                max-width: 960px;
-                margin: 0 auto;
-            }
-
-            .skills-col__heading {
-                font-family: var(--ff-secondary);
-                font-size: 0.66rem;
-                letter-spacing: 4px;
-                text-transform: uppercase;
-                color: var(--clr-accent);
-                margin: 0 0 2em;
-                padding-bottom: 1em;
-                border-bottom: 1px solid #dde5ef;
-            }
-
-            .skill-bar {
-                margin-bottom: 1.6em;
-                opacity: 0;
-                transform: translateX(-12px);
-                transition: opacity 0.45s ease, transform 0.45s ease;
-            }
-
-            .skill-bar.visible { opacity: 1; transform: translateX(0); }
-
-            .skill-bar__header {
-                display: flex;
-                justify-content: space-between;
-                align-items: baseline;
-                margin-bottom: 0.5em;
-            }
-
-            .skill-bar__name {
-                font-size: 0.875rem;
-                font-weight: var(--fw-bold);
-                color: var(--clr-dark);
-                letter-spacing: 0.4px;
-            }
-
-            .skill-bar__pct {
-                font-family: var(--ff-secondary);
-                font-size: 0.7rem;
-                color: var(--clr-accent);
-            }
-
-            .skill-bar__track {
-                height: 2px;
-                background: #dde5ef;
-                border-radius: 2px;
-                overflow: hidden;
-            }
-
-            .skill-bar__fill {
-                height: 100%;
-                background: var(--clr-accent);
-                border-radius: 2px;
-                width: 0;
-                transition: width 1.1s cubic-bezier(0.4, 0, 0.2, 1);
-            }
-
-            .soft-skill-list {
-                display: flex;
-                flex-direction: column;
-                gap: 1.4em;
-            }
-
-            .soft-skill {
-                display: flex;
-                align-items: flex-start;
-                gap: 1.1em;
-                opacity: 0;
-                transform: translateX(12px);
-                transition: opacity 0.45s ease, transform 0.45s ease;
-            }
-
-            .soft-skill.visible { opacity: 1; transform: translateX(0); }
-
-            .soft-skill__icon {
-                width: 38px;
-                height: 38px;
-                border-radius: 50%;
-                background: rgba(10,126,133,0.1);
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                color: var(--clr-accent);
-                font-size: 0.95rem;
-                flex-shrink: 0;
-                margin-top: 2px;
-            }
-
-            .soft-skill__name {
-                font-weight: var(--fw-bold);
-                font-size: 0.9rem;
-                color: var(--clr-dark);
-                margin: 0 0 0.2em;
-            }
-
-            .soft-skill__desc {
-                font-size: 0.82rem;
-                color: #5a7080;
-                line-height: 1.6;
-                margin: 0;
-            }
-
-            /* ════════════════════════════
-               KEYFRAMES
-            ════════════════════════════ */
-            @keyframes fadeUp {
-                from { opacity: 0; transform: translateY(20px); }
-                to   { opacity: 1; transform: translateY(0); }
-            }
-
-            @keyframes fadeIn {
-                from { opacity: 0; }
-                to   { opacity: 1; }
-            }
-
-            /* ════════════════════════════
-               RESPONSIVE
-            ════════════════════════════ */
-            @media (max-width: 900px) {
-                .hero__inner        { grid-template-columns: 1fr; }
-                .hero__photo-wrap   { display: none; }
-                .about__inner       { grid-template-columns: 1fr; }
-                .about__photo-wrap  { display: none; }
-                .skills-layout      { grid-template-columns: 1fr; gap: 3em; }
-                .services-grid      { grid-template-columns: 1fr; }
-            }
-        </style>
-    </head>
-
-    <body>
-        <header>
-            <div class="logo"><img src="" alt=""></div>
-            <nav>
-                <ul class="nav__list">
-                    <li class="nav__item"><a href="#home" class="nav__link">About Me</a></li>
-                    <li class="nav__item"><a href="projects.html" class="nav__link">My Projects</a></li>
-                    <li class="nav__item"><a href="cv.html" class="nav__link">CV</a></li>
-                    <li class="nav__item" style="float:right"><a class="active" href="#footer">Contact</a></li>
-                </ul>
-            </nav>
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Chris Emmert — Founder & Product Builder</title>
+<meta name="description" content="Chris Emmert — founder and product builder. Turning vision into reality: human-centered, tech-enabled products built from zero to one, then scaled." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+<!-- ============ HERO ============ -->
+<header class="stage" id="top" data-screen-label="Hero">
+  <canvas id="wave"></canvas>
+  <div class="hero-fade"></div>
+  <div class="grain"></div>
+
+  <div class="hero-content">
+    <div class="topbar">
+      <nav class="topnav fadeup d1">
+        <a href="#about">About</a>
+        <a href="#work">Work</a>
+        <a href="#cv">CV</a>
+        <a href="#writing">Writing</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </div>
+
+    <div class="hero-main">
+      <div class="hero-id fadeup d2">
+        <img class="hero-avatar" src="assets/chris.png" alt="Chris Emmert" width="954" height="1184" />
+        <p class="hero-subtitle"><span class="dot"></span><span class="lbl">Chris Emmert · Founder · Product Builder · Writer</span></p>
+      </div>
+      <h1 class="h-hero">
+        <span class="rv"><span class="rise d3"><span class="shine">Turning vision</span></span></span>
+        <span class="rv"><span class="rise d4"><span class="shine">into reality.</span></span></span>
+      </h1>
+      <div class="hero-sub">
+        <p class="fadeup d5">I build what doesn't exist yet — <b>envisioning a human-centered, tech-enabled future</b> and creating it from 0 → 1, scaling it to the globe.</p>
+        <div class="scrollcue fadeup d5"><span class="arr"></span><span class="lbl">Scroll to discover</span></div>
+      </div>
+    </div>
+  </div>
+
+  <nav class="index">
+    <a href="#about"><span class="n">01</span> About</a>
+    <a href="#work"><span class="n">02</span> Work</a>
+    <a href="#excel"><span class="n">03</span> Strengths</a>
+    <a href="#cv"><span class="n">04</span> CV</a>
+    <a href="#writing"><span class="n">05</span> Writing</a>
+    <a href="#now"><span class="n">06</span> Now</a>
+    <a href="#contact"><span class="n">07</span> Contact</a>
+  </nav>
+</header>
+
+<main>
+  <!-- ============ ABOUT ============ -->
+  <section class="section" id="about" data-screen-label="About">
+    <div class="wrap">
+      <div class="sechead sr"><span class="idx">01</span><span class="ttl">About</span><span class="rule"></span></div>
+      <div class="about-grid">
+        <h2 class="about-state sr">I live in the first mile of a product — <span class="dim">where it's still an idea on a whiteboard and nobody's sure it can be built.</span></h2>
+        <div class="about-body sr sr-1">
+          <p>I'm Chris — a <b>founder, product builder, and writer</b>. I start companies and products before there's a roadmap, a deck, or proof the thing can exist. Hand me a blank page and a hard problem, and I'll hand you back a shipped first version.</p>
+          <p>I build at the edge of <b>human biology and technology</b> — longevity, the nervous system, the quiet signals our bodies send that we've never been able to read. I turn those signals into products people can hold, and I obsess over how something <em>feels</em> as much as how it scales.</p>
+          <p>My whole game is compressing the distance between <b>vision and reality</b>: frame the ambiguous, ship 0 → 1, find the real signal, then build the small, sharp team — and the company around it — that takes a prototype to the world.</p>
+          <div class="about-tags">
+            <span>Founder</span><span>0 → 1</span><span>Product</span><span>Startups</span><span>Longevity</span><span>Hardware × Software</span><span>Team-building</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Gallery — bento of moments. Drop real photos into each .ph placeholder. -->
+      <div class="gallery sr" data-screen-label="Gallery">
+        <figure class="gal gal-feat">
+          <img src="assets/chris.png" alt="Chris Emmert" loading="lazy" />
+          <figcaption><span class="g-k">01</span> Chris</figcaption>
+        </figure>
+        <figure class="gal">
+          <div class="ph gal-ph"></div>
+          <figcaption><span class="g-k">02</span> [ drop photo ] · in the workshop</figcaption>
+        </figure>
+        <figure class="gal">
+          <div class="ph gal-ph"></div>
+          <figcaption><span class="g-k">03</span> [ drop photo ] · on stage</figcaption>
+        </figure>
+        <figure class="gal">
+          <div class="ph gal-ph"></div>
+          <figcaption><span class="g-k">04</span> [ drop photo ] · the team, shipping</figcaption>
+        </figure>
+        <figure class="gal">
+          <div class="ph gal-ph"></div>
+          <figcaption><span class="g-k">05</span> [ drop photo ] · a prototype, mid-build</figcaption>
+        </figure>
+        <figure class="gal">
+          <div class="ph gal-ph"></div>
+          <figcaption><span class="g-k">06</span> [ drop photo ] · off the clock</figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ WORK ============ -->
+  <section class="section" id="work" data-screen-label="Work">
+    <div class="wrap">
+      <div class="sechead sr"><span class="idx">02</span><span class="ttl">What I've built</span><span class="rule"></span></div>
+      <p class="work-hint sr">Click any project to open the detail.</p>
+
+      <div class="work-gallery">
+        <article class="proj sr" data-proj>
+          <button class="proj-tile" type="button" aria-expanded="false">
+            <div class="proj-media">
+              <div class="ph proj-ph"><span class="ph-cap"><b>[ drop media ]</b> &nbsp;Seroton — app &amp; device</span></div>
+              <span class="proj-plus" aria-hidden="true"></span>
+            </div>
+            <div class="proj-bar">
+              <span class="proj-num">01</span>
+              <h3 class="proj-name">Seroton</h3>
+              <span class="proj-kind">Founder · Healthtech</span>
+            </div>
+          </button>
+          <div class="proj-detail">
+            <div class="proj-detail-inner">
+              <p class="case-lead">Turning an invisible biological signal into a product people can act on.</p>
+              <div class="case-cols">
+                <div class="case-col"><h4>My role</h4><p>Founder &amp; product lead. Set the vision, raised early support, and built the founding team from zero — owning direction across hardware, software, and story.</p></div>
+                <div class="case-col"><h4>Key decision</h4><p>Owned the full stack — sensor, firmware, and consumer app — so the experience stayed coherent end to end instead of fracturing across vendors.</p></div>
+                <div class="case-col"><h4>Outcome</h4><p>A shipped 0→1 product and a small cross-functional team, with a roadmap built around real user signal rather than assumptions.</p></div>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <article class="proj sr sr-1" data-proj>
+          <button class="proj-tile" type="button" aria-expanded="false">
+            <div class="proj-media">
+              <div class="ph proj-ph"><span class="ph-cap"><b>[ drop media ]</b> &nbsp;Smart Fitness Mat</span></div>
+              <span class="proj-plus" aria-hidden="true"></span>
+            </div>
+            <div class="proj-bar">
+              <span class="proj-num">02</span>
+              <h3 class="proj-name">Smart Fitness Mat</h3>
+              <span class="proj-kind">Hardware × App</span>
+            </div>
+          </button>
+          <div class="proj-detail">
+            <div class="proj-detail-inner">
+              <p class="case-lead">Real-time guidance from a surface you already stand on.</p>
+              <div class="case-cols">
+                <div class="case-col"><h4>My role</h4><p>Product and engineering lead across the embedded signal pipeline and the mobile experience — bridging the two worlds end to end.</p></div>
+                <div class="case-col"><h4>Key decision</h4><p>Made the pressure-sensing path reliable first and beautiful second — then spent the polish budget making it feel effortless in the app.</p></div>
+                <div class="case-col"><h4>Outcome</h4><p>A working hardware + software product taken from prototype toward people's homes, with a coherent experience across device and screen.</p></div>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <article class="proj sr sr-2" data-proj>
+          <button class="proj-tile" type="button" aria-expanded="false">
+            <div class="proj-media">
+              <div class="ph proj-ph"><span class="ph-cap"><b>[ drop media ]</b> &nbsp;selected experiments</span></div>
+              <span class="proj-plus" aria-hidden="true"></span>
+            </div>
+            <div class="proj-bar">
+              <span class="proj-num">03</span>
+              <h3 class="proj-name">Experiments</h3>
+              <span class="proj-kind">Side projects · 0→1</span>
+            </div>
+          </button>
+          <div class="proj-detail">
+            <div class="proj-detail-inner">
+              <p class="case-lead">A standing habit of building the thing that doesn't exist yet.</p>
+              <div class="case-cols">
+                <div class="case-col"><h4>The pattern</h4><p>Small, fast prototypes that test a hunch about people, sensors, or interfaces — most stay experiments; a few become the seed of something bigger.</p></div>
+                <div class="case-col"><h4>Why it matters</h4><p>It keeps the 0→1 muscle warm: scoping fast, building rough, and learning what's real before committing a team or a quarter.</p></div>
+                <div class="case-col"><h4>Selected</h4><p>Sensor toys, embedded sketches, and interface experiments. <em>Add two or three you're proud of here.</em></p></div>
+              </div>
+            </div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ EXCEL ============ -->
+  <section class="section" id="excel" data-screen-label="Strengths">
+    <div class="wrap">
+      <div class="sechead sr"><span class="idx">03</span><span class="ttl">Where I excel</span><span class="rule"></span></div>
+      <div class="excel-grid">
+        <div class="skill sr"><span class="sk-n">A</span><h3>Scoping ambiguous 0→1</h3><p>Finding the shape of a product when there's no brief — just a hunch, a constraint, and a blank page. Turning that into a first version worth reacting to.</p><p class="proof"><b>Proof —</b> Seroton: from sketch to a shipped app and a funded founding team.</p></div>
+        <div class="skill sr sr-1"><span class="sk-n">B</span><h3>Bridging embedded, mobile &amp; backend</h3><p>Comfortable from firmware and signal processing up through the app and the cloud — so the seams between disciplines don't become the product's weak points.</p><p class="proof"><b>Proof —</b> owned full signal paths from sensor to screen on two hardware products.</p></div>
+        <div class="skill sr"><span class="sk-n">C</span><h3>Building small, cross-functional teams</h3><p>Hiring the first engineers and designers, setting the bar, and creating the conditions where a tiny team ships like a much larger one.</p><p class="proof"><b>Proof —</b> assembled founding teams that punched well above their headcount.</p></div>
+        <div class="skill sr sr-1"><span class="sk-n">D</span><h3>Turning vision into roadmap &amp; funding</h3><p>Translating conviction into a plan others can believe in and back — sequencing what to build, when, and what to deliberately leave out.</p><p class="proof"><b>Proof —</b> converted early conviction into capital and a credible path to ship.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ CV ============ -->
+  <section class="section" id="cv" data-screen-label="CV">
+    <div class="wrap">
+      <div class="sechead sr"><span class="idx">04</span><span class="ttl">Curriculum Vitae</span><span class="rule"></span>
+        <a class="cv-download" href="#cv"><span class="ar">↓</span> PDF</a>
+      </div>
+
+      <!-- High-level CV scaffold — fill the placeholders with real detail later. -->
+      <div class="cv">
+        <header class="cv-id sr">
+          <h2 class="cv-name">Chris Emmert</h2>
+          <p class="cv-role">Founder · Product Builder · Writer</p>
+          <p class="cv-contact"><span>Verona, IT · Remote</span><span>[email protected]</span><span>linkedin.com/in/…</span></p>
         </header>
 
-
-        <!-- ════ HERO ════ -->
-        <section class="hero" id="home">
-            <div class="hero__inner">
-                <div class="hero__text">
-                    <p class="hero__eyebrow">Product Manager &amp; Data Analyst</p>
-                    <h1 class="hero__name">Christoph<br>Emmert</h1>
-                    <p class="hero__role">Co-Founder @ Seroton &nbsp;·&nbsp; <em>Munich, Germany</em></p>
-                    <p class="hero__bio">I build tech products that sit at the intersection of human behaviour, data, and purposeful design — currently creating smart wellness technology at Seroton.</p>
-                    <div class="hero__actions">
-                        <a href="projects.html" class="btn">My Projects</a>
-                        <a href="cv.html" class="btn-outline">View CV</a>
-                        <a href="#footer" class="btn-outline">Contact</a>
-                    </div>
-                </div>
-
-                <div class="hero__photo-wrap">
-                    <img src="img/ce_1.JPG" alt="Christoph Emmert" class="hero__photo">
-                </div>
+        <div class="cv-block sr">
+          <div class="cv-label">Experience</div>
+          <div class="cv-rows">
+            <div class="cv-row">
+              <div class="cv-when">2023 — Now</div>
+              <div class="cv-what">
+                <h4>Founder &amp; CEO <span class="cv-org">— Seroton</span></h4>
+                <p class="cv-sum">One-line summary of the company and your mandate. <em>Fill later.</em></p>
+                <ul class="cv-points">
+                  <li>Key achievement or milestone — replace with a real one.</li>
+                  <li>A second outcome worth highlighting.</li>
+                </ul>
+              </div>
             </div>
-
-            <div class="scroll-hint">
-                <div class="scroll-hint__bar"></div>
-                Scroll
+            <div class="cv-row">
+              <div class="cv-when">20XX — 20XX</div>
+              <div class="cv-what">
+                <h4>Role <span class="cv-org">— Company</span></h4>
+                <p class="cv-sum">What you owned and the impact you had. <em>Fill later.</em></p>
+                <ul class="cv-points">
+                  <li>Outcome or responsibility one.</li>
+                  <li>Outcome or responsibility two.</li>
+                </ul>
+              </div>
             </div>
-        </section>
-
-
-        <!-- ════ WHAT I DO ════ -->
-        <section class="what-i-do" id="skills">
-            <div class="section-header">
-                <p class="section-header__label">Expertise</p>
-                <h2 class="section-header__title">What I Do</h2>
+            <div class="cv-row">
+              <div class="cv-when">20XX — 20XX</div>
+              <div class="cv-what">
+                <h4>Role <span class="cv-org">— Company</span></h4>
+                <p class="cv-sum">Short description of the work. <em>Fill later.</em></p>
+              </div>
             </div>
+          </div>
+        </div>
 
-            <div class="services-grid">
-                <div class="service-card">
-                    <span class="service-card__icon"><i class="fas fa-compass"></i></span>
-                    <h3 class="service-card__title">Product Management</h3>
-                    <p class="service-card__text">I find simple solutions to complex problems. Bridging business, engineering, and user needs, I define product vision and steer development with a clear, data-informed roadmap.</p>
-                </div>
-                <div class="service-card">
-                    <span class="service-card__icon"><i class="fas fa-chart-line"></i></span>
-                    <h3 class="service-card__title">Product Analytics</h3>
-                    <p class="service-card__text">Decisions grounded in data. I design experiments, track the metrics that matter, and translate quantitative findings into product moves that genuinely move the needle.</p>
-                </div>
-                <div class="service-card">
-                    <span class="service-card__icon"><i class="fas fa-brain"></i></span>
-                    <h3 class="service-card__title">Data Science</h3>
-                    <p class="service-card__text">From raw sensor signals to machine-learning pipelines, I extract value from complex datasets — turning data into insight, and insight into competitive advantage.</p>
-                </div>
+        <div class="cv-block sr">
+          <div class="cv-label">Education</div>
+          <div class="cv-rows">
+            <div class="cv-row">
+              <div class="cv-when">20XX — 20XX</div>
+              <div class="cv-what">
+                <h4>Degree <span class="cv-org">— Institution</span></h4>
+                <p class="cv-sum">Field of study, focus, or notable detail. <em>Fill later.</em></p>
+              </div>
             </div>
+          </div>
+        </div>
 
-            <div class="section-cta">
-                <a href="projects.html" class="btn">See My Projects</a>
-            </div>
-        </section>
-
-
-        <!-- ════ ABOUT ME ════ -->
-        <section class="about" id="about">
-            <div class="about__inner">
-                <div class="about__photo-wrap">
-                    <img src="img/ce_2.JPG" alt="Christoph Emmert" class="about__photo">
+        <div class="cv-block sr">
+          <div class="cv-label">Skills &amp; tools</div>
+          <div class="cv-rows">
+            <div class="cv-row">
+              <div class="cv-when">Core</div>
+              <div class="cv-what">
+                <div class="cv-tags">
+                  <span>Product strategy</span><span>0 → 1</span><span>Embedded / firmware</span><span>Mobile</span><span>Backend</span><span>Signal processing</span><span>Team-building</span><span>Fundraising</span>
                 </div>
-
-                <div class="about__content">
-                    <p class="about__label">About Me</p>
-                    <h2 class="about__heading">Who I Am</h2>
-                    <p class="about__tagline">Technology enthusiast &mdash; built with curiosity, data &amp; a love for sport.</p>
-                    <p class="about__text">I am a tech-savvy, open-minded young professional with roots in business, sport, and engineering, based in Munich. I thrive in complex situations and believe that the clearest signal of good thinking is a simple solution.</p>
-                    <p class="about__text">I am fascinated by products that help people live more fulfilled lives. Operating at the crossroads of people, engineering, product vision, and analytics, my goal is always to understand deeply — and then to act decisively.</p>
-
-                    <div class="about__traits">
-                        <div class="trait">
-                            <span class="trait__icon"><i class="fas fa-fire"></i></span>
-                            <span class="trait__label">Character</span>
-                            <span class="trait__value">Visionary</span>
-                        </div>
-                        <div class="trait">
-                            <span class="trait__icon"><i class="fas fa-puzzle-piece"></i></span>
-                            <span class="trait__label">Thinking</span>
-                            <span class="trait__value">Analytical</span>
-                        </div>
-                        <div class="trait">
-                            <span class="trait__icon"><i class="fas fa-user-friends"></i></span>
-                            <span class="trait__label">Style</span>
-                            <span class="trait__value">Collaborative</span>
-                        </div>
-                        <div class="trait">
-                            <span class="trait__icon"><i class="fas fa-map-marker-alt"></i></span>
-                            <span class="trait__label">Based in</span>
-                            <span class="trait__value">Munich, DE</span>
-                        </div>
-                    </div>
-                </div>
+              </div>
             </div>
-        </section>
+          </div>
+        </div>
 
-
-        <!-- ════ SKILLS ════ -->
-        <section class="skills-section" id="skillslist">
-            <div class="section-header">
-                <p class="section-header__label">Capabilities</p>
-                <h2 class="section-header__title">My Skills</h2>
+        <div class="cv-block sr">
+          <div class="cv-label">Recognition</div>
+          <div class="cv-rows">
+            <div class="cv-row">
+              <div class="cv-when">20XX</div>
+              <div class="cv-what">
+                <h4>Award, talk, or feature <span class="cv-org">— Source</span></h4>
+                <p class="cv-sum">A line of context. <em>Fill later.</em></p>
+              </div>
             </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
-            <div class="skills-layout">
-                <div>
-                    <p class="skills-col__heading">Technical Skills</p>
+  <!-- ============ WRITING ============ -->
+  <section class="section" id="writing" data-screen-label="Writing">
+    <div class="wrap">
+      <div class="sechead sr"><span class="idx">05</span><span class="ttl">Writing &amp; thinking</span><span class="rule"></span>
+        <div class="writing-links">
+          <a href="https://medium.com/" target="_blank" rel="noopener"><span class="ar">→</span> Medium</a>
+          <a href="https://www.linkedin.com/" target="_blank" rel="noopener"><span class="ar">→</span> LinkedIn</a>
+        </div>
+      </div>
+      <!-- TODO: posts are MDX files in production; first one is wired up -->
+      <a class="post sr" href="writing/living-in-the-first-mile.html">
+        <span class="date">Jun 2026</span>
+        <span class="ptitle">Living in the first mile of a product</span>
+        <span class="read">6 min</span>
+      </a>
+      <a class="post sr" href="#writing">
+        <span class="date">Mar 2026</span>
+        <span class="ptitle">What hardware taught me about humility</span>
+        <span class="read">5 min</span>
+      </a>
+      <a class="post sr" href="#writing">
+        <span class="date">Nov 2025</span>
+        <span class="ptitle">Reading the body: signals, longevity &amp; software</span>
+        <span class="read">8 min</span>
+      </a>
+      <a class="post sr" href="#writing">
+        <span class="date">Aug 2025</span>
+        <span class="ptitle">Hiring the team that ships 0→1</span>
+        <span class="read">4 min</span>
+      </a>
+    </div>
+  </section>
 
-                    <div class="skill-bar">
-                        <div class="skill-bar__header">
-                            <span class="skill-bar__name">MS Excel</span>
-                            <span class="skill-bar__pct">95%</span>
-                        </div>
-                        <div class="skill-bar__track"><div class="skill-bar__fill" data-width="95"></div></div>
-                    </div>
-                    <div class="skill-bar">
-                        <div class="skill-bar__header">
-                            <span class="skill-bar__name">Python</span>
-                            <span class="skill-bar__pct">82%</span>
-                        </div>
-                        <div class="skill-bar__track"><div class="skill-bar__fill" data-width="82"></div></div>
-                    </div>
-                    <div class="skill-bar">
-                        <div class="skill-bar__header">
-                            <span class="skill-bar__name">SQL</span>
-                            <span class="skill-bar__pct">78%</span>
-                        </div>
-                        <div class="skill-bar__track"><div class="skill-bar__fill" data-width="78"></div></div>
-                    </div>
-                    <div class="skill-bar">
-                        <div class="skill-bar__header">
-                            <span class="skill-bar__name">SPSS</span>
-                            <span class="skill-bar__pct">70%</span>
-                        </div>
-                        <div class="skill-bar__track"><div class="skill-bar__fill" data-width="70"></div></div>
-                    </div>
-                    <div class="skill-bar">
-                        <div class="skill-bar__header">
-                            <span class="skill-bar__name">Matlab</span>
-                            <span class="skill-bar__pct">65%</span>
-                        </div>
-                        <div class="skill-bar__track"><div class="skill-bar__fill" data-width="65"></div></div>
-                    </div>
-                </div>
+  <!-- ============ NOW ============ -->
+  <section class="section" id="now" data-screen-label="Now">
+    <div class="wrap">
+      <div class="sechead sr"><span class="idx">06</span><span class="ttl">Now</span><span class="rule"></span></div>
+      <div class="now-grid">
+        <div class="now-meta sr">UPDATED<br />JUNE 2026<br /><br />VERONA, IT<br />· REMOTE ·</div>
+        <div class="now-list sr sr-1">
+          <!-- TODO: keep this current -->
+          <div class="now-item"><span class="b"></span><p>Building the next 0→1 product at the intersection of <span>longevity and the nervous system.</span></p></div>
+          <div class="now-item"><span class="b"></span><p>Advising a small number of early-stage founders on <span>hardware-meets-software products.</span></p></div>
+          <div class="now-item"><span class="b"></span><p>Writing more — thinking in public about <span>building, teams, and human-centered tech.</span></p></div>
+        </div>
+      </div>
+    </div>
+  </section>
 
-                <div>
-                    <p class="skills-col__heading">Product &amp; Leadership Skills</p>
+  <!-- ============ CONTACT ============ -->
+  <section class="section contact" id="contact" data-screen-label="Contact">
+    <canvas id="wave-foot"></canvas>
+    <div class="wrap">
+      <div class="sechead sr"><span class="idx">07</span><span class="ttl">Work with me</span><span class="rule"></span></div>
+      <h2 class="contact-cta sr"><a href="mailto:[email protected]">Let's build <span class="arrowmark">→</span></a></h2>
+      <div class="contact-row">
+        <div class="contact-ways sr">
+          <!-- TODO: replace email + handles -->
+          <p class="lead"><b>Open to advising, speaking, and the right founding-team conversations.</b> If you're taking something ambiguous from zero to one, I'd like to hear about it.</p>
+        </div>
+        <div class="links sr sr-1">
+          <a href="mailto:[email protected]"><span class="ar">→</span> [email protected]</a>
+          <a href="https://www.linkedin.com/" target="_blank" rel="noopener"><span class="ar">→</span> LinkedIn</a>
+          <a href="https://github.com/" target="_blank" rel="noopener"><span class="ar">→</span> GitHub</a>
+        </div>
+      </div>
+      <div class="footer">
+        <span>Chris Emmert — Founder &amp; Product Builder</span>
+        <span>© 2026 · Built from 0 → 1</span>
+      </div>
+    </div>
+  </section>
+</main>
 
-                    <div class="soft-skill-list">
-                        <div class="soft-skill">
-                            <div class="soft-skill__icon"><i class="fas fa-fire"></i></div>
-                            <div>
-                                <p class="soft-skill__name">Visionary Thinking</p>
-                                <p class="soft-skill__desc">Connecting technological opportunity with human need — finding creative paths where others see dead ends.</p>
-                            </div>
-                        </div>
-                        <div class="soft-skill">
-                            <div class="soft-skill__icon"><i class="fas fa-puzzle-piece"></i></div>
-                            <div>
-                                <p class="soft-skill__name">Analytical Mindset</p>
-                                <p class="soft-skill__desc">Structured, critical thinking that surfaces the insight underneath the noise and drives better decisions.</p>
-                            </div>
-                        </div>
-                        <div class="soft-skill">
-                            <div class="soft-skill__icon"><i class="fas fa-user-friends"></i></div>
-                            <div>
-                                <p class="soft-skill__name">Stakeholder Alignment</p>
-                                <p class="soft-skill__desc">Bringing diverse perspectives to the table and translating them into shared direction and forward motion.</p>
-                            </div>
-                        </div>
-                        <div class="soft-skill">
-                            <div class="soft-skill__icon"><i class="fas fa-route"></i></div>
-                            <div>
-                                <p class="soft-skill__name">Roadmap &amp; Prioritisation</p>
-                                <p class="soft-skill__desc">Ruthless focus on what matters — defining the what, the why, and the when, and holding the team to it.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
+<div class="loader" id="loader">
+  <div class="mark"></div>
+  <div class="ltext">LOADING</div>
+  <div class="bar"><i></i></div>
+</div>
 
-
-        <!-- ════ FOOTER ════ -->
-        <footer class="footer" id="footer">
-            <p class="section__subtitle section__subtitle--skills">Connect with me</p>
-            <ul class="social-list">
-                <li class="social-list__item">
-                    <a class="social-list__link" href="mailto:christoph.emmert@gmx.de">
-                        <i class="fas fa-envelope"></i>
-                    </a>
-                </li>
-                <li class="social-list__item">
-                    <a class="social-list__link" href="https://www.linkedin.com/in/christoph-emmert/" target="_blank">
-                        <i class="fab fa-linkedin"></i>
-                    </a>
-                </li>
-                <li class="social-list__item">
-                    <a class="social-list__link" href="https://github.com/chrisdiss" target="_blank">
-                        <i class="fab fa-github"></i>
-                    </a>
-                </li>
-            </ul>
-            <p>Made with <i class="fas fa-heart"></i> and <i class="fas fa-coffee"></i></p>
-        </footer>
-
-
-        <script src="js/index.js"></script>
-        <script>
-            const io = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (!entry.isIntersecting) return;
-                    const el = entry.target;
-                    const siblings = Array.from(el.parentElement.children);
-                    el.style.transitionDelay = (siblings.indexOf(el) * 90) + 'ms';
-                    el.classList.add('visible');
-                    el.querySelectorAll('.skill-bar__fill').forEach(bar => {
-                        bar.style.width = bar.dataset.width + '%';
-                    });
-                    io.unobserve(el);
-                });
-            }, { threshold: 0.12 });
-
-            document.querySelectorAll(
-                '.service-card, .about__photo-wrap, .about__content, .skill-bar, .soft-skill'
-            ).forEach(el => io.observe(el));
-        </script>
-    </body>
+<script src="site.js"></script>
+</body>
 </html>
