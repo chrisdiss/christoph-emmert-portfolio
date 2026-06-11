@@ -7,39 +7,50 @@
 <meta name="description" content="On the messy, generative space before a product has a roadmap, a team, or proof it can be done." />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
 <link rel="stylesheet" href="../styles.css" />
 <style>
   .post-wrap { max-width: 760px; margin: 0 auto; padding: clamp(28px,4vw,56px) var(--pad) clamp(80px,10vw,160px); }
   .post-top { display: flex; justify-content: space-between; align-items: center; padding-top: 8px; margin-bottom: clamp(56px,9vw,130px); }
-  .post-top a { font-family: var(--mono); font-size: 12px; letter-spacing: 0.08em; color: var(--tx-2); display: inline-flex; gap: 10px; align-items: center; transition: color .25s; }
-  .post-top a:hover { color: var(--accent); }
-  .post-meta { font-family: var(--mono); font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--tx-3); display: flex; gap: 18px; }
-  .post-title { font-family: var(--disp); font-weight: 800; font-size: clamp(34px,5.2vw,72px); line-height: 0.98; letter-spacing: -0.025em; margin: 22px 0 16px; }
-  .post-dek { font-size: clamp(17px,1.5vw,21px); line-height: 1.5; color: var(--tx-2); margin-bottom: clamp(40px,6vw,72px); max-width: 30em; }
-  .article { font-size: 18px; line-height: 1.72; color: #2a2823; }
+  .post-top a { font-family: var(--mono); font-size: 12px; letter-spacing: 0.08em; color: var(--ink-2); display: inline-flex; gap: 10px; align-items: center; transition: color .25s; }
+  .post-top a:hover { color: var(--blue); }
+  .post-meta { font-family: var(--mono); font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--ink-3); display: flex; gap: 18px; }
+  .post-tag { color: var(--blue); }
+  .post-title {
+    font-family: var(--disp); font-weight: 800; font-size: clamp(34px,5.2vw,72px);
+    line-height: 0.98; letter-spacing: -0.025em; margin: 22px 0 16px;
+    background: linear-gradient(100deg, #4d7cff 0%, #7c97ff 16%, #ff5d1f 36%, #4d7cff 54%, #ff8a4d 76%, #4d7cff 100%);
+    background-size: 240% 100%;
+    -webkit-background-clip: text; background-clip: text;
+    -webkit-text-fill-color: transparent; color: transparent;
+    animation: shine 19s linear infinite;
+  }
+  @keyframes shine { 0% { background-position: 240% 0; } 100% { background-position: 0% 0; } }
+  @media (prefers-reduced-motion: reduce) { .post-title { animation: none; -webkit-text-fill-color: var(--ink); color: var(--ink); background: none; } }
+  .post-dek { font-size: clamp(17px,1.5vw,21px); line-height: 1.5; color: var(--ink-2); margin-bottom: clamp(40px,6vw,72px); max-width: 30em; }
+  .article { font-size: 18px; line-height: 1.72; color: var(--ink-2); font-family: var(--disp); font-weight: 500; }
   .article p { margin: 0 0 1.4em; }
-  .article p b { color: var(--tx); font-weight: 500; }
-  .article h2 { font-family: var(--disp); font-weight: 700; font-size: clamp(22px,2.4vw,30px); line-height: 1.1; letter-spacing: -0.01em; color: var(--tx); margin: 2.2em 0 0.7em; }
-  .article blockquote { margin: 1.8em 0; padding-left: 26px; border-left: 2px solid var(--accent); }
-  .article blockquote p { font-family: var(--disp); font-weight: 600; font-size: clamp(20px,2vw,27px); line-height: 1.22; color: var(--tx); letter-spacing: -0.01em; }
-  .article .lead-cap::first-letter { font-family: var(--disp); font-weight: 800; font-size: 3.4em; line-height: .82; float: left; padding: 6px 14px 0 0; color: var(--accent); }
+  .article p b { color: var(--ink); font-weight: 700; }
+  .article h2 { font-family: var(--disp); font-weight: 700; font-size: clamp(22px,2.4vw,30px); line-height: 1.1; letter-spacing: -0.01em; color: var(--ink); margin: 2.2em 0 0.7em; }
+  .article blockquote { margin: 1.8em 0; padding-left: 26px; border-left: 2px solid var(--blue); }
+  .article blockquote p { font-family: var(--serif); font-style: italic; font-weight: 400; font-size: clamp(20px,2vw,27px); line-height: 1.22; color: var(--ink); letter-spacing: -0.01em; margin: 0; }
+  .article .lead-cap::first-letter { font-family: var(--disp); font-weight: 800; font-size: 3.4em; line-height: .82; float: left; padding: 6px 14px 0 0; color: var(--blue); }
   .post-foot { margin-top: clamp(60px,9vw,120px); padding-top: 28px; border-top: 1px solid var(--line); display: flex; justify-content: space-between; flex-wrap: wrap; gap: 16px; }
-  .post-foot a { font-family: var(--mono); font-size: 12px; letter-spacing: 0.06em; color: var(--tx-2); transition: color .25s; }
-  .post-foot a:hover { color: var(--accent); }
-  .post-foot span { font-family: var(--mono); font-size: 11px; letter-spacing: 0.1em; color: var(--tx-3); }
+  .post-foot a { font-family: var(--mono); font-size: 12px; letter-spacing: 0.06em; color: var(--ink-2); transition: color .25s; }
+  .post-foot a:hover { color: var(--blue); }
+  .post-foot span { font-family: var(--mono); font-size: 11px; letter-spacing: 0.1em; color: var(--ink-3); }
 </style>
 </head>
 <body>
-<article class="post-wrap" data-screen-label="Writing post">
+<article class="post-wrap">
   <div class="post-top">
     <a href="../index.html#writing"><span>←</span> All writing</a>
     <div class="post-meta"><span>Jun 2026</span><span>6 min</span></div>
   </div>
 
   <header>
-    <div class="post-meta" style="margin-bottom:14px"><span class="accent">Field notes</span></div>
-    <h1 class="post-title"><span class="shine">Living in the first mile of a product</span></h1>
+    <div class="post-meta" style="margin-bottom:14px"><span class="post-tag">Field notes</span></div>
+    <h1 class="post-title">Living in the first mile of a product</h1>
     <p class="post-dek">On the messy, generative space before a product has a roadmap, a team, or any proof it can be done — and why I keep choosing it.</p>
   </header>
 
