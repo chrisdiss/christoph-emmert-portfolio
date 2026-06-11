@@ -3,287 +3,237 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Chris Emmert — Founder & Product Builder</title>
-<meta name="description" content="Chris Emmert — founder and product builder. Turning vision into reality: human-centered, tech-enabled products built from zero to one, then scaled." />
+<title>Chris Emmert — Turning Visions Into Reality</title>
+<meta name="description" content="Chris Emmert — founder, product builder, writer. Building what doesn't exist yet, from 0 → 1 to the globe." />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous" />
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
 <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
 
+<div class="progress" aria-hidden="true"><i id="progressBar"></i></div>
+<div class="cursor" id="cursor" aria-hidden="true"><span class="c-dot"></span><span class="c-label" id="cursorLabel"></span></div>
+<div class="grain" aria-hidden="true"></div>
+
 <!-- ============ HERO ============ -->
-<header class="stage" id="top" data-screen-label="Hero">
-  <canvas id="wave"></canvas>
-  <div class="hero-fade"></div>
-  <div class="grain"></div>
+<header class="hero" id="top" data-screen-label="Hero">
+  <canvas id="field" aria-hidden="true"></canvas>
 
-  <div class="hero-content">
-    <div class="topbar">
-      <nav class="topnav fadeup d1">
-        <a href="#about">About</a>
-        <a href="#work">Work</a>
-        <a href="#cv">CV</a>
-        <a href="#writing">Writing</a>
-        <a href="#contact">Contact</a>
-      </nav>
+  <nav class="nav">
+    <span class="nav-sig mono" data-scramble="CE — 0→1">CE — 0→1</span>
+    <div class="nav-links">
+      <a href="#about" data-mag data-scramble="ABOUT">ABOUT</a>
+      <a href="#work" data-mag data-scramble="WORK">WORK</a>
+      <a href="#cv" data-mag data-scramble="CV">CV</a>
+      <a href="#writing" data-mag data-scramble="WRITING">WRITING</a>
+      <a href="#contact" data-mag data-scramble="CONTACT">CONTACT</a>
     </div>
+  </nav>
 
-    <div class="hero-main">
-      <div class="hero-id fadeup d2">
-        <img class="hero-avatar" src="assets/chris.png" alt="Chris Emmert" width="954" height="1184" />
-        <p class="hero-subtitle"><span class="dot"></span><span class="lbl">Chris Emmert · Founder · Product Builder · Writer</span></p>
-      </div>
-      <h1 class="h-hero">
-        <span class="rv"><span class="rise d3"><span class="shine">Turning vision</span></span></span>
-        <span class="rv"><span class="rise d4"><span class="shine">into reality.</span></span></span>
-      </h1>
-      <div class="hero-sub">
-        <p class="fadeup d5">I build what doesn't exist yet — <b>envisioning a human-centered, tech-enabled future</b> and creating it from 0 → 1, scaling it to the globe.</p>
-        <div class="scrollcue fadeup d5"><span class="arr"></span><span class="lbl">Scroll to discover</span></div>
-      </div>
-    </div>
+  <div class="hero-meta mono">
+    <span>MUNICH, DE — <span id="clock">00:00:00</span></span>
+    <span>48.1351° N, 11.5820° E</span>
+    <span class="hm-status"><i class="pulse"></i>BUILDING</span>
   </div>
 
-  <nav class="index">
-    <a href="#about"><span class="n">01</span> About</a>
-    <a href="#work"><span class="n">02</span> Work</a>
-    <a href="#excel"><span class="n">03</span> Strengths</a>
-    <a href="#cv"><span class="n">04</span> CV</a>
-    <a href="#writing"><span class="n">05</span> Writing</a>
-    <a href="#now"><span class="n">06</span> Now</a>
-    <a href="#contact"><span class="n">07</span> Contact</a>
-  </nav>
+  <h1 class="hh" aria-label="Turning visions into reality">
+    <span class="hh-line"><span class="hh-rv"><span class="hh-t fill">TURNING</span></span></span>
+    <span class="hh-line hh-mid"><span class="hh-rv"><span class="hh-t outline">VISIONS</span></span><span class="hh-serif">into</span></span>
+    <span class="hh-line"><span class="hh-rv"><span class="hh-t fill">REALITY<span class="hh-dot">.</span></span></span></span>
+  </h1>
+
+  <figure class="hero-portrait" id="portrait">
+    <img src="assets/chris.png" alt="Chris Emmert" width="954" height="1184" />
+    <figcaption class="mono">CHRIS EMMERT · FOUNDER · PRODUCT BUILDER · WRITER</figcaption>
+  </figure>
+
+  <p class="hero-sub">I build ambitious products that make a real difference — <em>envisioning a human-centered, tech-enabled future</em>, creating it from 0 → 1 and scaling it to as many people as possible.</p>
+
+  <div class="ticker" aria-hidden="true">
+    <div class="ticker-track">
+      <span>FOUNDER</span><i>✦</i><span>PRODUCT BUILDER</span><i>✦</i><span>WRITER</span><i>✦</i><span>0 → 1</span><i>✦</i><span>HUMAN × TECH</span><i>✦</i><span>FOUNDER</span><i>✦</i><span>PRODUCT BUILDER</span><i>✦</i><span>WRITER</span><i>✦</i><span>0 → 1</span><i>✦</i><span>HUMAN × TECH</span><i>✦</i>
+    </div>
+  </div>
 </header>
 
 <main>
-  <!-- ============ ABOUT ============ -->
-  <section class="section" id="about" data-screen-label="About">
-    <div class="wrap">
-      <div class="sechead sr"><span class="idx">01</span><span class="ttl">About</span><span class="rule"></span></div>
-      <div class="about-grid">
-        <h2 class="about-state sr">I live in the first mile of a product — <span class="dim">where it's still an idea on a whiteboard and nobody's sure it can be built.</span></h2>
-        <div class="about-body sr sr-1">
-          <p>I'm Chris — a <b>founder, product builder, and writer</b>. I start companies and products before there's a roadmap, a deck, or proof the thing can exist. Hand me a blank page and a hard problem, and I'll hand you back a shipped first version.</p>
-          <p>I build at the edge of <b>human biology and technology</b> — longevity, the nervous system, the quiet signals our bodies send that we've never been able to read. I turn those signals into products people can hold, and I obsess over how something <em>feels</em> as much as how it scales.</p>
-          <p>My whole game is compressing the distance between <b>vision and reality</b>: frame the ambiguous, ship 0 → 1, find the real signal, then build the small, sharp team — and the company around it — that takes a prototype to the world.</p>
-          <div class="about-tags">
-            <span>Founder</span><span>0 → 1</span><span>Product</span><span>Startups</span><span>Longevity</span><span>Hardware × Software</span><span>Team-building</span>
-          </div>
-        </div>
-      </div>
+  <!-- ============ ABOUT / MANIFESTO ============ -->
+  <section class="sec" id="about" data-screen-label="About">
+    <div class="sechead"><span class="mono idx">01</span><span class="mono ttl" data-scramble="ABOUT">ABOUT</span><span class="rule"></span><span class="mono hint">SCROLL — THE TEXT FOLLOWS</span></div>
+    <p class="mani" id="manifesto">I'm Chris — founder, product builder, and writer. I start before there's a roadmap, a deck, or proof it can work — a blank page and a hard problem are my favorite starting line. I build at the edge of human biology and technology, turning the quiet signals our bodies send into products people love. My craft is collapsing the distance between vision and reality: frame the ambiguous, ship 0 → 1, find the true signal, then build the team that carries it to the world.</p>
+    <div class="about-tags">
+      <span data-mag>FOUNDER</span><span data-mag>0 → 1</span><span data-mag>PRODUCT</span><span data-mag>STARTUPS</span><span data-mag>LONGEVITY</span><span data-mag>HW × SW</span><span data-mag>TEAM-BUILDING</span>
+    </div>
+  </section>
 
-      <!-- Gallery — bento of moments. Drop real photos into each .ph placeholder. -->
-      <div class="gallery sr" data-screen-label="Gallery">
-        <figure class="gal gal-feat">
-          <img src="assets/chris.png" alt="Chris Emmert" loading="lazy" />
-          <figcaption><span class="g-k">01</span> Chris</figcaption>
-        </figure>
-        <figure class="gal">
-          <div class="ph gal-ph"></div>
-          <figcaption><span class="g-k">02</span> [ drop photo ] · in the workshop</figcaption>
-        </figure>
-        <figure class="gal">
-          <div class="ph gal-ph"></div>
-          <figcaption><span class="g-k">03</span> [ drop photo ] · on stage</figcaption>
-        </figure>
-        <figure class="gal">
-          <div class="ph gal-ph"></div>
-          <figcaption><span class="g-k">04</span> [ drop photo ] · the team, shipping</figcaption>
-        </figure>
-        <figure class="gal">
-          <div class="ph gal-ph"></div>
-          <figcaption><span class="g-k">05</span> [ drop photo ] · a prototype, mid-build</figcaption>
-        </figure>
-        <figure class="gal">
-          <div class="ph gal-ph"></div>
-          <figcaption><span class="g-k">06</span> [ drop photo ] · off the clock</figcaption>
-        </figure>
-      </div>
+  <!-- ============ GALLERY STRIP ============ -->
+  <section class="strip-sec band" data-screen-label="Gallery" id="gallery">
+    <div class="sechead in-pad"><span class="mono idx">02</span><span class="mono ttl">MOMENTS</span><span class="rule"></span><span class="mono hint">DRAG ↔</span></div>
+    <div class="strip" id="strip" data-cursor="DRAG">
+      <figure class="card c-feat"><img src="assets/chris.png" alt="Chris Emmert" loading="lazy" /><figcaption class="mono">01 · CHRIS</figcaption></figure>
+      <figure class="card"><div class="ph"></div><figcaption class="mono">02 · [ DROP PHOTO ] IN THE WORKSHOP</figcaption></figure>
+      <figure class="card"><div class="ph"></div><figcaption class="mono">03 · [ DROP PHOTO ] ON STAGE</figcaption></figure>
+      <figure class="card"><div class="ph"></div><figcaption class="mono">04 · [ DROP PHOTO ] THE TEAM, SHIPPING</figcaption></figure>
+      <figure class="card"><div class="ph"></div><figcaption class="mono">05 · [ DROP PHOTO ] PROTOTYPE, MID-BUILD</figcaption></figure>
+      <figure class="card"><div class="ph"></div><figcaption class="mono">06 · [ DROP PHOTO ] OFF THE CLOCK</figcaption></figure>
     </div>
   </section>
 
   <!-- ============ WORK ============ -->
-  <section class="section" id="work" data-screen-label="Work">
-    <div class="wrap">
-      <div class="sechead sr"><span class="idx">02</span><span class="ttl">What I've built</span><span class="rule"></span></div>
-      <p class="work-hint sr">Click any project to open the detail.</p>
+  <section class="sec" id="work" data-screen-label="Work">
+    <div class="sechead"><span class="mono idx">03</span><span class="mono ttl" data-scramble="WHAT I'VE BUILT">WHAT I'VE BUILT</span><span class="rule"></span><span class="mono hint">HOVER — PREVIEW · CLICK — DETAIL</span></div>
 
-      <div class="work-gallery">
-        <article class="proj sr" data-proj>
-          <button class="proj-tile" type="button" aria-expanded="false">
-            <div class="proj-media">
-              <div class="ph proj-ph"><span class="ph-cap"><b>[ drop media ]</b> &nbsp;Seroton — app &amp; device</span></div>
-              <span class="proj-plus" aria-hidden="true"></span>
-            </div>
-            <div class="proj-bar">
-              <span class="proj-num">01</span>
-              <h3 class="proj-name">Seroton</h3>
-              <span class="proj-kind">Founder · Healthtech</span>
-            </div>
-          </button>
-          <div class="proj-detail">
-            <div class="proj-detail-inner">
-              <p class="case-lead">Turning an invisible biological signal into a product people can act on.</p>
-              <div class="case-cols">
-                <div class="case-col"><h4>My role</h4><p>Founder &amp; product lead. Set the vision, raised early support, and built the founding team from zero — owning direction across hardware, software, and story.</p></div>
-                <div class="case-col"><h4>Key decision</h4><p>Owned the full stack — sensor, firmware, and consumer app — so the experience stayed coherent end to end instead of fracturing across vendors.</p></div>
-                <div class="case-col"><h4>Outcome</h4><p>A shipped 0→1 product and a small cross-functional team, with a roadmap built around real user signal rather than assumptions.</p></div>
-              </div>
+    <div class="wlist">
+      <article class="wrow" data-wrow data-preview="SEROTON — APP &amp; DEVICE">
+        <button class="wrow-head" type="button" aria-expanded="false">
+          <span class="mono wnum">01</span>
+          <h3 class="wname">SEROTON</h3>
+          <span class="wserif">founder · healthtech</span>
+          <span class="wplus" aria-hidden="true"></span>
+        </button>
+        <div class="wdetail">
+          <div class="wdetail-in">
+            <div class="wmedia"><div class="ph"></div><span class="mono ph-lab">[ DROP MEDIA ] SEROTON — APP &amp; DEVICE</span></div>
+            <p class="wlead">Turning an invisible biological signal into a product people can act on.</p>
+            <div class="wcols">
+              <div class="wcol"><h4 class="mono">MY ROLE</h4><p>Founder &amp; product lead. Set the vision, raised early support, and built the founding team from zero — owning direction across hardware, software, and story.</p></div>
+              <div class="wcol"><h4 class="mono">KEY DECISION</h4><p>Owned the full stack — sensor, firmware, and consumer app — so the experience stayed coherent end to end instead of fracturing across vendors.</p></div>
+              <div class="wcol"><h4 class="mono">OUTCOME</h4><p>A shipped 0→1 product and a small cross-functional team, with a roadmap built around real user signal rather than assumptions.</p></div>
             </div>
           </div>
-        </article>
+        </div>
+      </article>
 
-        <article class="proj sr sr-1" data-proj>
-          <button class="proj-tile" type="button" aria-expanded="false">
-            <div class="proj-media">
-              <div class="ph proj-ph"><span class="ph-cap"><b>[ drop media ]</b> &nbsp;Smart Fitness Mat</span></div>
-              <span class="proj-plus" aria-hidden="true"></span>
-            </div>
-            <div class="proj-bar">
-              <span class="proj-num">02</span>
-              <h3 class="proj-name">Smart Fitness Mat</h3>
-              <span class="proj-kind">Hardware × App</span>
-            </div>
-          </button>
-          <div class="proj-detail">
-            <div class="proj-detail-inner">
-              <p class="case-lead">Real-time guidance from a surface you already stand on.</p>
-              <div class="case-cols">
-                <div class="case-col"><h4>My role</h4><p>Product and engineering lead across the embedded signal pipeline and the mobile experience — bridging the two worlds end to end.</p></div>
-                <div class="case-col"><h4>Key decision</h4><p>Made the pressure-sensing path reliable first and beautiful second — then spent the polish budget making it feel effortless in the app.</p></div>
-                <div class="case-col"><h4>Outcome</h4><p>A working hardware + software product taken from prototype toward people's homes, with a coherent experience across device and screen.</p></div>
-              </div>
+      <article class="wrow" data-wrow data-preview="SMART FITNESS MAT">
+        <button class="wrow-head" type="button" aria-expanded="false">
+          <span class="mono wnum">02</span>
+          <h3 class="wname">SMART FITNESS MAT</h3>
+          <span class="wserif">hardware × app</span>
+          <span class="wplus" aria-hidden="true"></span>
+        </button>
+        <div class="wdetail">
+          <div class="wdetail-in">
+            <div class="wmedia"><div class="ph"></div><span class="mono ph-lab">[ DROP MEDIA ] SMART FITNESS MAT</span></div>
+            <p class="wlead">Real-time guidance from a surface you already stand on.</p>
+            <div class="wcols">
+              <div class="wcol"><h4 class="mono">MY ROLE</h4><p>Product and engineering lead across the embedded signal pipeline and the mobile experience — bridging the two worlds end to end.</p></div>
+              <div class="wcol"><h4 class="mono">KEY DECISION</h4><p>Made the pressure-sensing path reliable first and beautiful second — then spent the polish budget making it feel effortless in the app.</p></div>
+              <div class="wcol"><h4 class="mono">OUTCOME</h4><p>A working hardware + software product taken from prototype toward people's homes, with a coherent experience across device and screen.</p></div>
             </div>
           </div>
-        </article>
+        </div>
+      </article>
 
-        <article class="proj sr sr-2" data-proj>
-          <button class="proj-tile" type="button" aria-expanded="false">
-            <div class="proj-media">
-              <div class="ph proj-ph"><span class="ph-cap"><b>[ drop media ]</b> &nbsp;selected experiments</span></div>
-              <span class="proj-plus" aria-hidden="true"></span>
-            </div>
-            <div class="proj-bar">
-              <span class="proj-num">03</span>
-              <h3 class="proj-name">Experiments</h3>
-              <span class="proj-kind">Side projects · 0→1</span>
-            </div>
-          </button>
-          <div class="proj-detail">
-            <div class="proj-detail-inner">
-              <p class="case-lead">A standing habit of building the thing that doesn't exist yet.</p>
-              <div class="case-cols">
-                <div class="case-col"><h4>The pattern</h4><p>Small, fast prototypes that test a hunch about people, sensors, or interfaces — most stay experiments; a few become the seed of something bigger.</p></div>
-                <div class="case-col"><h4>Why it matters</h4><p>It keeps the 0→1 muscle warm: scoping fast, building rough, and learning what's real before committing a team or a quarter.</p></div>
-                <div class="case-col"><h4>Selected</h4><p>Sensor toys, embedded sketches, and interface experiments. <em>Add two or three you're proud of here.</em></p></div>
-              </div>
+      <article class="wrow" data-wrow data-preview="SELECTED EXPERIMENTS">
+        <button class="wrow-head" type="button" aria-expanded="false">
+          <span class="mono wnum">03</span>
+          <h3 class="wname">EXPERIMENTS</h3>
+          <span class="wserif">side projects · 0→1</span>
+          <span class="wplus" aria-hidden="true"></span>
+        </button>
+        <div class="wdetail">
+          <div class="wdetail-in">
+            <div class="wmedia"><div class="ph"></div><span class="mono ph-lab">[ DROP MEDIA ] SELECTED EXPERIMENTS</span></div>
+            <p class="wlead">A standing habit of building the thing that doesn't exist yet.</p>
+            <div class="wcols">
+              <div class="wcol"><h4 class="mono">THE PATTERN</h4><p>Small, fast prototypes that test a hunch about people, sensors, or interfaces — most stay experiments; a few become the seed of something bigger.</p></div>
+              <div class="wcol"><h4 class="mono">WHY IT MATTERS</h4><p>It keeps the 0→1 muscle warm: scoping fast, building rough, and learning what's real before committing a team or a quarter.</p></div>
+              <div class="wcol"><h4 class="mono">SELECTED</h4><p>Sensor toys, embedded sketches, and interface experiments. <em>Add two or three you're proud of here.</em></p></div>
             </div>
           </div>
-        </article>
-      </div>
+        </div>
+      </article>
     </div>
+    <div class="wpreview mono" id="wpreview" aria-hidden="true">PREVIEW</div>
   </section>
 
-  <!-- ============ EXCEL ============ -->
-  <section class="section" id="excel" data-screen-label="Strengths">
-    <div class="wrap">
-      <div class="sechead sr"><span class="idx">03</span><span class="ttl">Where I excel</span><span class="rule"></span></div>
-      <div class="excel-grid">
-        <div class="skill sr"><span class="sk-n">A</span><h3>Scoping ambiguous 0→1</h3><p>Finding the shape of a product when there's no brief — just a hunch, a constraint, and a blank page. Turning that into a first version worth reacting to.</p><p class="proof"><b>Proof —</b> Seroton: from sketch to a shipped app and a funded founding team.</p></div>
-        <div class="skill sr sr-1"><span class="sk-n">B</span><h3>Bridging embedded, mobile &amp; backend</h3><p>Comfortable from firmware and signal processing up through the app and the cloud — so the seams between disciplines don't become the product's weak points.</p><p class="proof"><b>Proof —</b> owned full signal paths from sensor to screen on two hardware products.</p></div>
-        <div class="skill sr"><span class="sk-n">C</span><h3>Building small, cross-functional teams</h3><p>Hiring the first engineers and designers, setting the bar, and creating the conditions where a tiny team ships like a much larger one.</p><p class="proof"><b>Proof —</b> assembled founding teams that punched well above their headcount.</p></div>
-        <div class="skill sr sr-1"><span class="sk-n">D</span><h3>Turning vision into roadmap &amp; funding</h3><p>Translating conviction into a plan others can believe in and back — sequencing what to build, when, and what to deliberately leave out.</p><p class="proof"><b>Proof —</b> converted early conviction into capital and a credible path to ship.</p></div>
-      </div>
+  <!-- ============ STRENGTHS ============ -->
+  <section class="sec" id="excel" data-screen-label="Strengths">
+    <div class="sechead"><span class="mono idx">04</span><span class="mono ttl" data-scramble="WHERE I EXCEL">WHERE I EXCEL</span><span class="rule"></span></div>
+    <div class="xgrid">
+      <div class="xcell" data-mag-soft><span class="mono xk">A</span><h3>Scoping ambiguous 0→1</h3><p>Finding the shape of a product when there's no brief — just a hunch, a constraint, and a blank page.</p><p class="xproof mono">PROOF — SEROTON: SKETCH → SHIPPED APP + FUNDED TEAM</p></div>
+      <div class="xcell" data-mag-soft><span class="mono xk">B</span><h3>Embedded ↔ mobile ↔ backend</h3><p>Comfortable from firmware and signal processing up through the app and the cloud — the seams never become the weak point.</p><p class="xproof mono">PROOF — FULL SENSOR-TO-SCREEN PATHS ON TWO HW PRODUCTS</p></div>
+      <div class="xcell" data-mag-soft><span class="mono xk">C</span><h3>Small, sharp teams</h3><p>Hiring the first engineers and designers, setting the bar, and creating conditions where a tiny team ships like a big one.</p><p class="xproof mono">PROOF — FOUNDING TEAMS THAT PUNCH ABOVE HEADCOUNT</p></div>
+      <div class="xcell" data-mag-soft><span class="mono xk">D</span><h3>Vision → roadmap → funding</h3><p>Translating conviction into a plan others can believe in and back — sequencing what to build and what to leave out.</p><p class="xproof mono">PROOF — EARLY CONVICTION → CAPITAL → CREDIBLE PATH</p></div>
     </div>
   </section>
 
   <!-- ============ CV ============ -->
-  <section class="section" id="cv" data-screen-label="CV">
-    <div class="wrap">
-      <div class="sechead sr"><span class="idx">04</span><span class="ttl">Curriculum Vitae</span><span class="rule"></span>
-        <a class="cv-download" href="#cv"><span class="ar">↓</span> PDF</a>
+  <section class="sec band" id="cv" data-screen-label="CV">
+    <div class="sechead"><span class="mono idx">05</span><span class="mono ttl" data-scramble="CURRICULUM VITAE">CURRICULUM VITAE</span><span class="rule"></span><a class="mono hint cvl" href="#cv" data-mag>↓ PDF</a></div>
+
+    <div class="cv">
+      <header class="cv-id">
+        <h2 class="cv-name">CHRIS EMMERT</h2>
+        <p class="cv-role wserif">founder · product builder · writer</p>
+        <p class="cv-contact mono"><span>MUNICH, DE · REMOTE</span><span>[email protected]</span><span>LINKEDIN.COM/IN/…</span></p>
+      </header>
+
+      <div class="cv-block">
+        <div class="cv-label mono">EXPERIENCE</div>
+        <div class="cv-rows">
+          <div class="cv-row">
+            <div class="cv-when mono">2023 — NOW</div>
+            <div class="cv-what">
+              <h4>Founder &amp; CEO <span class="cv-org">— Seroton</span></h4>
+              <p class="cv-sum">One-line summary of the company and your mandate. <em>Fill later.</em></p>
+              <ul class="cv-points"><li>Key achievement or milestone — replace with a real one.</li><li>A second outcome worth highlighting.</li></ul>
+            </div>
+          </div>
+          <div class="cv-row">
+            <div class="cv-when mono">20XX — 20XX</div>
+            <div class="cv-what">
+              <h4>Role <span class="cv-org">— Company</span></h4>
+              <p class="cv-sum">What you owned and the impact you had. <em>Fill later.</em></p>
+              <ul class="cv-points"><li>Outcome or responsibility one.</li><li>Outcome or responsibility two.</li></ul>
+            </div>
+          </div>
+          <div class="cv-row">
+            <div class="cv-when mono">20XX — 20XX</div>
+            <div class="cv-what">
+              <h4>Role <span class="cv-org">— Company</span></h4>
+              <p class="cv-sum">Short description of the work. <em>Fill later.</em></p>
+            </div>
+          </div>
+        </div>
       </div>
 
-      <!-- High-level CV scaffold — fill the placeholders with real detail later. -->
-      <div class="cv">
-        <header class="cv-id sr">
-          <h2 class="cv-name">Chris Emmert</h2>
-          <p class="cv-role">Founder · Product Builder · Writer</p>
-          <p class="cv-contact"><span>Verona, IT · Remote</span><span>[email protected]</span><span>linkedin.com/in/…</span></p>
-        </header>
+      <div class="cv-block">
+        <div class="cv-label mono">EDUCATION</div>
+        <div class="cv-rows">
+          <div class="cv-row">
+            <div class="cv-when mono">20XX — 20XX</div>
+            <div class="cv-what">
+              <h4>Degree <span class="cv-org">— Institution</span></h4>
+              <p class="cv-sum">Field of study, focus, or notable detail. <em>Fill later.</em></p>
+            </div>
+          </div>
+        </div>
+      </div>
 
-        <div class="cv-block sr">
-          <div class="cv-label">Experience</div>
-          <div class="cv-rows">
-            <div class="cv-row">
-              <div class="cv-when">2023 — Now</div>
-              <div class="cv-what">
-                <h4>Founder &amp; CEO <span class="cv-org">— Seroton</span></h4>
-                <p class="cv-sum">One-line summary of the company and your mandate. <em>Fill later.</em></p>
-                <ul class="cv-points">
-                  <li>Key achievement or milestone — replace with a real one.</li>
-                  <li>A second outcome worth highlighting.</li>
-                </ul>
-              </div>
-            </div>
-            <div class="cv-row">
-              <div class="cv-when">20XX — 20XX</div>
-              <div class="cv-what">
-                <h4>Role <span class="cv-org">— Company</span></h4>
-                <p class="cv-sum">What you owned and the impact you had. <em>Fill later.</em></p>
-                <ul class="cv-points">
-                  <li>Outcome or responsibility one.</li>
-                  <li>Outcome or responsibility two.</li>
-                </ul>
-              </div>
-            </div>
-            <div class="cv-row">
-              <div class="cv-when">20XX — 20XX</div>
-              <div class="cv-what">
-                <h4>Role <span class="cv-org">— Company</span></h4>
-                <p class="cv-sum">Short description of the work. <em>Fill later.</em></p>
+      <div class="cv-block">
+        <div class="cv-label mono">SKILLS &amp; TOOLS</div>
+        <div class="cv-rows">
+          <div class="cv-row">
+            <div class="cv-when mono">CORE</div>
+            <div class="cv-what">
+              <div class="cv-tags">
+                <span>PRODUCT STRATEGY</span><span>0 → 1</span><span>EMBEDDED / FIRMWARE</span><span>MOBILE</span><span>BACKEND</span><span>SIGNAL PROCESSING</span><span>TEAM-BUILDING</span><span>FUNDRAISING</span>
               </div>
             </div>
           </div>
         </div>
+      </div>
 
-        <div class="cv-block sr">
-          <div class="cv-label">Education</div>
-          <div class="cv-rows">
-            <div class="cv-row">
-              <div class="cv-when">20XX — 20XX</div>
-              <div class="cv-what">
-                <h4>Degree <span class="cv-org">— Institution</span></h4>
-                <p class="cv-sum">Field of study, focus, or notable detail. <em>Fill later.</em></p>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="cv-block sr">
-          <div class="cv-label">Skills &amp; tools</div>
-          <div class="cv-rows">
-            <div class="cv-row">
-              <div class="cv-when">Core</div>
-              <div class="cv-what">
-                <div class="cv-tags">
-                  <span>Product strategy</span><span>0 → 1</span><span>Embedded / firmware</span><span>Mobile</span><span>Backend</span><span>Signal processing</span><span>Team-building</span><span>Fundraising</span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="cv-block sr">
-          <div class="cv-label">Recognition</div>
-          <div class="cv-rows">
-            <div class="cv-row">
-              <div class="cv-when">20XX</div>
-              <div class="cv-what">
-                <h4>Award, talk, or feature <span class="cv-org">— Source</span></h4>
-                <p class="cv-sum">A line of context. <em>Fill later.</em></p>
-              </div>
+      <div class="cv-block">
+        <div class="cv-label mono">RECOGNITION</div>
+        <div class="cv-rows">
+          <div class="cv-row">
+            <div class="cv-when mono">20XX</div>
+            <div class="cv-what">
+              <h4>Award, talk, or feature <span class="cv-org">— Source</span></h4>
+              <p class="cv-sum">A line of context. <em>Fill later.</em></p>
             </div>
           </div>
         </div>
@@ -292,83 +242,71 @@
   </section>
 
   <!-- ============ WRITING ============ -->
-  <section class="section" id="writing" data-screen-label="Writing">
-    <div class="wrap">
-      <div class="sechead sr"><span class="idx">05</span><span class="ttl">Writing &amp; thinking</span><span class="rule"></span>
-        <div class="writing-links">
-          <a href="https://medium.com/" target="_blank" rel="noopener"><span class="ar">→</span> Medium</a>
-          <a href="https://www.linkedin.com/" target="_blank" rel="noopener"><span class="ar">→</span> LinkedIn</a>
-        </div>
-      </div>
-      <!-- TODO: posts are MDX files in production; first one is wired up -->
-      <a class="post sr" href="writing/living-in-the-first-mile.html">
-        <span class="date">Jun 2026</span>
-        <span class="ptitle">Living in the first mile of a product</span>
-        <span class="read">6 min</span>
+  <section class="sec" id="writing" data-screen-label="Writing">
+    <div class="sechead"><span class="mono idx">06</span><span class="mono ttl" data-scramble="WRITING &amp; THINKING">WRITING &amp; THINKING</span><span class="rule"></span>
+      <span class="wlinks"><a class="mono hint" href="https://medium.com/" target="_blank" rel="noopener" data-mag>→ MEDIUM</a><a class="mono hint" href="https://www.linkedin.com/" target="_blank" rel="noopener" data-mag>→ LINKEDIN</a></span>
+    </div>
+    <div class="plist">
+      <a class="post" href="writing/living-in-the-first-mile.html" data-cursor="READ">
+        <span class="mono pdate">JUN 2026</span>
+        <span class="ptitle"><span class="pt-a">Living in the first mile of a product</span><span class="pt-b wserif">living in the first mile of a product</span></span>
+        <span class="mono pread">6 MIN ↗</span>
       </a>
-      <a class="post sr" href="#writing">
-        <span class="date">Mar 2026</span>
-        <span class="ptitle">What hardware taught me about humility</span>
-        <span class="read">5 min</span>
+      <a class="post" href="#writing" data-cursor="READ">
+        <span class="mono pdate">MAR 2026</span>
+        <span class="ptitle"><span class="pt-a">What hardware taught me about humility</span><span class="pt-b wserif">what hardware taught me about humility</span></span>
+        <span class="mono pread">5 MIN ↗</span>
       </a>
-      <a class="post sr" href="#writing">
-        <span class="date">Nov 2025</span>
-        <span class="ptitle">Reading the body: signals, longevity &amp; software</span>
-        <span class="read">8 min</span>
+      <a class="post" href="#writing" data-cursor="READ">
+        <span class="mono pdate">NOV 2025</span>
+        <span class="ptitle"><span class="pt-a">Reading the body: signals, longevity &amp; software</span><span class="pt-b wserif">reading the body: signals, longevity &amp; software</span></span>
+        <span class="mono pread">8 MIN ↗</span>
       </a>
-      <a class="post sr" href="#writing">
-        <span class="date">Aug 2025</span>
-        <span class="ptitle">Hiring the team that ships 0→1</span>
-        <span class="read">4 min</span>
+      <a class="post" href="#writing" data-cursor="READ">
+        <span class="mono pdate">AUG 2025</span>
+        <span class="ptitle"><span class="pt-a">Hiring the team that ships 0→1</span><span class="pt-b wserif">hiring the team that ships 0→1</span></span>
+        <span class="mono pread">4 MIN ↗</span>
       </a>
     </div>
   </section>
 
   <!-- ============ NOW ============ -->
-  <section class="section" id="now" data-screen-label="Now">
-    <div class="wrap">
-      <div class="sechead sr"><span class="idx">06</span><span class="ttl">Now</span><span class="rule"></span></div>
-      <div class="now-grid">
-        <div class="now-meta sr">UPDATED<br />JUNE 2026<br /><br />VERONA, IT<br />· REMOTE ·</div>
-        <div class="now-list sr sr-1">
-          <!-- TODO: keep this current -->
-          <div class="now-item"><span class="b"></span><p>Building the next 0→1 product at the intersection of <span>longevity and the nervous system.</span></p></div>
-          <div class="now-item"><span class="b"></span><p>Advising a small number of early-stage founders on <span>hardware-meets-software products.</span></p></div>
-          <div class="now-item"><span class="b"></span><p>Writing more — thinking in public about <span>building, teams, and human-centered tech.</span></p></div>
-        </div>
-      </div>
+  <section class="sec" id="now" data-screen-label="Now">
+    <div class="sechead"><span class="mono idx">07</span><span class="mono ttl" data-scramble="NOW">NOW</span><span class="rule"></span><span class="mono hint">UPDATED JUNE 2026</span></div>
+    <div class="now-list">
+      <div class="now-item"><span class="mono nk">→</span><p>Building the next 0→1 product at the intersection of <em>longevity and the nervous system.</em></p></div>
+      <div class="now-item"><span class="mono nk">→</span><p>Advising a small number of early-stage founders on <em>hardware-meets-software products.</em></p></div>
+      <div class="now-item"><span class="mono nk">→</span><p>Writing more — thinking in public about <em>building, teams, and human-centered tech.</em></p></div>
     </div>
   </section>
 
   <!-- ============ CONTACT ============ -->
-  <section class="section contact" id="contact" data-screen-label="Contact">
-    <canvas id="wave-foot"></canvas>
-    <div class="wrap">
-      <div class="sechead sr"><span class="idx">07</span><span class="ttl">Work with me</span><span class="rule"></span></div>
-      <h2 class="contact-cta sr"><a href="mailto:[email protected]">Let's build <span class="arrowmark">→</span></a></h2>
-      <div class="contact-row">
-        <div class="contact-ways sr">
-          <!-- TODO: replace email + handles -->
-          <p class="lead"><b>Open to advising, speaking, and the right founding-team conversations.</b> If you're taking something ambiguous from zero to one, I'd like to hear about it.</p>
-        </div>
-        <div class="links sr sr-1">
-          <a href="mailto:[email protected]"><span class="ar">→</span> [email protected]</a>
-          <a href="https://www.linkedin.com/" target="_blank" rel="noopener"><span class="ar">→</span> LinkedIn</a>
-          <a href="https://github.com/" target="_blank" rel="noopener"><span class="ar">→</span> GitHub</a>
-        </div>
+  <section class="sec contact" id="contact" data-screen-label="Contact">
+    <div class="sechead"><span class="mono idx">08</span><span class="mono ttl" data-scramble="WORK WITH ME">WORK WITH ME</span><span class="rule"></span></div>
+    <a class="cta" href="mailto:[email protected]" data-mag-big data-cursor="EMAIL">
+      <span class="cta-t fill">LET'S</span>
+      <span class="cta-t outline">BUILD</span>
+      <span class="cta-arrow">→</span>
+    </a>
+    <div class="contact-row">
+      <p class="lead"><em>Open to advising, speaking, and the right founding-team conversations.</em> If you're taking something ambiguous from zero to one, I'd like to hear about it.</p>
+      <div class="links">
+        <a class="mono" href="mailto:[email protected]" data-mag>→ [email protected]</a>
+        <a class="mono" href="https://www.linkedin.com/" target="_blank" rel="noopener" data-mag>→ LINKEDIN</a>
+        <a class="mono" href="https://github.com/" target="_blank" rel="noopener" data-mag>→ GITHUB</a>
       </div>
-      <div class="footer">
-        <span>Chris Emmert — Founder &amp; Product Builder</span>
-        <span>© 2026 · Built from 0 → 1</span>
+    </div>
+    <div class="footer-ticker" aria-hidden="true">
+      <div class="ticker-track t2">
+        <span>CHRIS EMMERT</span><i>✦</i><span>BUILT FROM 0 → 1</span><i>✦</i><span>© 2026</span><i>✦</i><span>TURNING VISION INTO REALITY</span><i>✦</i><span>CHRIS EMMERT</span><i>✦</i><span>BUILT FROM 0 → 1</span><i>✦</i><span>© 2026</span><i>✦</i><span>TURNING VISION INTO REALITY</span><i>✦</i>
       </div>
     </div>
   </section>
 </main>
 
-<div class="loader" id="loader">
-  <div class="mark"></div>
-  <div class="ltext">LOADING</div>
-  <div class="bar"><i></i></div>
+<div class="loader" id="loader" aria-hidden="true">
+  <span class="mono l-count" id="lcount">000</span>
+  <span class="mono l-lab">CHRIS EMMERT — PORTFOLIO</span>
 </div>
 
 <script src="site.js"></script>
